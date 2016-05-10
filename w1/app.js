@@ -1,6 +1,12 @@
 // Code 201 Day 02
 // Demo code for lecture & lab
 
+var userAction = document.getElementById("quizMe");
+if (userAction.addEventListener)
+    userAction.addEventListener("click", quizUser, false);
+else if (userAction.attachEvent)
+    userAction.attachEvent('onclick', quizUser);
+
 var userName = prompt('What is your name?');
 console.log('The user said there name is ' + userName);
 
