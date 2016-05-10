@@ -29,6 +29,23 @@ var quizUser = function(){
     alert('Oops! Actually, Lizzie is not proficient in C++.');
     console.log(userName + ' is incorrect, Lizzie doesn\'t know CSS');
     }
+    //Ask what year Lizzie graduated college++
+    var tryAgain = true;
+    while (tryAgain){
+      var beganCollege = prompt('Knowing that Lizzie completed her Vermont Legal Aid internship 4 years before she started college, in what year did Lizzie start college?');
+      if (Number(beganCollege) === 2010){
+        alert('Correct! Lizzie did start school in '+ beganCollege);
+        console.log(userName + ' is right, Lizzie did start school in '+ beganCollege);
+        tryAgain = false;
+      } else if (Number(beganCollege) < 2010){
+        alert('Sorry! That answer is too low. Please try again');
+        console.log(userName + '\'s guess is too low');
+      }
+      else {
+        alert('Sorry! That answer is too high. Please try again');
+        console.log(userName + '\'s guess is too high');
+        }
+    }
 //Ask Lizzie's major in college
     var major = prompt('Ok, final question. What did Lizzie study in college?');
     if (major.toLowerCase() === 'geography'){
