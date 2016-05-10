@@ -17,12 +17,14 @@ var quizUser = function(){
   console.log('The user\'s name is ' + userName);
 
   //Ask which city Lizzie studied abroad in
+  var cityNames = ['valparaiso', 'valpo', 'valparaiso, chile', 'valparaiso chile'];
   var city = prompt('Ok ' + userName + ', let\'s begin. In what city did Lizzie study abroad?');
   console.log(userName + ' thinks Lizzie studied abroad in ' + city);
-  if (city.toLowerCase() === 'valparaiso' || city.toLowerCase() === 'valpo'){
+  if (cityNames.indexOf(city)>=0) {
     alert('Congratulations! Lizzie did study abroad in Valparaiso');
     correct++;
-  } else {
+    }
+  else {
     alert('Oops! Actually, Lizzie studied aborad in Valparaiso. Let\'s try another question.');
     }
 
@@ -36,6 +38,17 @@ var quizUser = function(){
     alert('Oops! Actually, Lizzie is not proficient in C++.');
     console.log(userName + ' is incorrect, Lizzie doesn\'t know CSS');
     }
+
+    //Ask if Lizzie knows C++
+    var skills = prompt('Yes or No; Lizzie is skilled in Adobe InDesign (Enter \'Y\' or \'N\')');
+    if (skills.toLowerCase() === 'y'){
+      alert('Well done! Lizzie is proficient in Adobe InDesign.');
+      console.log(userName + ' is right, Lizzie does know Adobe InDesign');
+      correct++;
+    } else {
+      alert('Oops! Actually, Lizzie is proficient in Adobe InDesign.');
+      console.log(userName + ' is incorrect, Lizzie does know Adobe InDesign');
+      }
 
     //Ask what year Lizzie graduated college
     var tryAgain = true;
@@ -72,5 +85,5 @@ var quizUser = function(){
       }
 
       //Give the user their final score
-      alert('You got ' + correct + ' answers right! Thanks for taking the quiz');
+      alert('You got ' + correct + ' of 5 questions right! Thanks for taking the quiz');
   }
