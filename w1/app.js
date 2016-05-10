@@ -14,9 +14,9 @@ var quizUser = function(){
   console.log('The user\'s name is ' + userName);
   //Ask which city Lizzie studied abroad in
   var city = prompt('Ok ' + userName + ', let\'s begin. In what city did Lizzie study abroad?');
-  console.log('The user thinks Lizzie studied abroad in ' + city);
-  if (city.toLowerCase() === 'valparaiso'){
-    alert('Congratulations! Lizzie did stuy abroad in Valparaiso');
+  console.log(userName + ' thinks Lizzie studied abroad in ' + city);
+  if (city.toLowerCase() === 'valparaiso' || city.toLowerCase() === 'valpo'){
+    alert('Congratulations! Lizzie did study abroad in Valparaiso');
   } else {
     alert('Oops! Actually, Lizzie studied aborad in Valparaiso. Let\'s try another question.');
     }
@@ -24,24 +24,24 @@ var quizUser = function(){
   var skills = prompt('Yes or No; Lizzie is skilled in C++ (Enter \'Y\' or \'N\')');
   if (skills.toLowerCase() === 'n'){
     alert('Well done! Lizzie is not proficient in C++.');
-    console.log('The user is right, Lizzie doesn\'t know CSS');
+    console.log(userName + ' is right, Lizzie doesn\'t know CSS');
   } else {
     alert('Oops! Actually, Lizzie is not proficient in C++.');
-    console.log('The user is incorrect, Lizzie doesn\'t know CSS');
+    console.log(userName + ' is incorrect, Lizzie doesn\'t know CSS');
     }
 //Ask Lizzie's major in college
     var major = prompt('Ok, final question. What did Lizzie study in college?');
     if (major.toLowerCase() === 'geography'){
       alert('Well done! Lizzie did study Geography in college.');
-      console.log('The user is right, Lizzie did study Geography');
+      console.log(userName + ' is right, Lizzie did study Geography');
     } else {
       alert('Oops! Actually, Lizzie did not study ' + major + '. She actually studied Geography.');
-      console.log('The user is incorrect, Lizzie didn\'t study '+ major);
+      console.log(userName + ' is incorrect, Lizzie didn\'t study '+ major);
       }
   }
 /*
 var userName = prompt('What is your name?');
-console.log('The user said there name is ' + userName);
+console.log(userName + ' said there name is ' + userName);
 
 alert('Hey there ' + userName + ', I\'m going to ask you some questions about me. Please click "ok", then answer Y or N to the next question.');
 
