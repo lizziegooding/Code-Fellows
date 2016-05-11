@@ -1,5 +1,6 @@
 // Code 201 Day 02
 // Demo code for lecture & lab
+//Grab element from the DOM
 var userAction = document.getElementById('quizMe');
 
 //Quiz button. From Stackoverflow question found here: http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
@@ -32,14 +33,14 @@ var quizUser = function(){
   var skills = prompt('Yes or No; Lizzie is skilled in C++ (Enter \'Y\' or \'N\')');
   if (skills.toLowerCase() === 'n'){
     alert('Well done! Lizzie is not proficient in C++.');
-    console.log(userName + ' is right, Lizzie doesn\'t know CSS');
+    console.log(userName + ' is right, Lizzie doesn\'t know C++');
     correct++;
   } else {
     alert('Oops! Actually, Lizzie is not proficient in C++.');
-    console.log(userName + ' is incorrect, Lizzie doesn\'t know CSS');
+    console.log(userName + ' is incorrect, Lizzie doesn\'t know C++');
   }
 
-    //Ask if Lizzie knows C++
+  //Ask if Lizzie knows C++
   var skills = prompt('Yes or No; Lizzie is skilled in Adobe InDesign (Enter \'Y\' or \'N\')');
   if (skills.toLowerCase() === 'y'){
     alert('Well done! Lizzie is proficient in Adobe InDesign.');
@@ -50,7 +51,7 @@ var quizUser = function(){
     console.log(userName + ' is incorrect, Lizzie does know Adobe InDesign');
   }
 
-    //Ask what year Lizzie graduated college
+  //Ask what year Lizzie graduated college
   var tryAgain = true;
   var numTries = 0;
   while (tryAgain){
@@ -73,7 +74,7 @@ var quizUser = function(){
     }
   }
 
-    //Ask Lizzie's major in college
+  //Ask Lizzie's major in college
   var major = prompt('Ok, final question. What did Lizzie study in college?');
   if (major.toLowerCase() === 'geography'){
     alert('Well done! Lizzie did study Geography in college.');
@@ -84,6 +85,6 @@ var quizUser = function(){
     console.log(userName + ' is incorrect, Lizzie didn\'t study ' + major);
   }
 
-      //Give the user their final score
+  //Give the user their final score
   alert('You got ' + correct + ' of 5 questions right! Thanks for taking the quiz');
 };
