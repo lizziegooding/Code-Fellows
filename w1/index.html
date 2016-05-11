@@ -8,12 +8,11 @@
   <body>
     <div id = "page">
       <header>
-        <h1>Lizzie Gooding</h1>
-        <nav> <!---I can't get the nav bar to align correctly--->
+        <div id = "banner"><h1>Lizzie Gooding</h1></div>
+        <nav class = "container">
           <div id = "persStatement">Personal Statement</div>
           <div id = "experience">Experience</div>
           <div id = "techSkills">Technical Skills</div>
-          <span class="stretch"></span>
         </nav>
       </header>
     <div class = "content">
@@ -84,9 +83,10 @@
     </ol>
   </div>
     <br>
-    <p>Want to test your knowledge?</p>
-    <input id="quizMe" type="button" value="Take the Quiz" onclick="quizUser();" />
-  </div>
+    <div id = "test">
+      <div class = "button"><p>Want to test your knowledge?</p></div>
+      <div class = "button"><input id="quizMe" type="button" value="Take the Quiz" onclick="quizUser();"/></div>
+    </div>
     <script src="app.js" type="text/javascript"></script>
   </body>
 </html>
