@@ -93,5 +93,5 @@ var quizUser = function(){
   }
 
   //Give the user their final score
-  alert('You got ' + correct + ' of 5 questions right! Thanks for taking the quiz');
+  alert('You got ' + correct + ' of 5 questions right' + userName + '! Thanks for taking the quiz');
 };
