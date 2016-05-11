@@ -19,7 +19,7 @@ var quizUser = function(){
 
   //Ask which city Lizzie studied abroad in
   var cityNames = ['valparaiso', 'valpo', 'valparaiso, chile', 'valparaiso chile'];
-  var city = prompt('Ok ' + userName + ', let\'s begin. In what city did Lizzie study abroad?');
+  var city = (prompt('Ok ' + userName + ', let\'s begin. In what city did Lizzie study abroad?')).toLowerCase();
   console.log(userName + ' thinks Lizzie studied abroad in ' + city);
   if (cityNames.indexOf(city) >= 0){
     alert('Congratulations! Lizzie did study abroad in Valparaiso');
@@ -66,10 +66,17 @@ var quizUser = function(){
       alert('Sorry! That answer is too low. Please try again');
       console.log(userName + '\'s guess is too low');
       numTries++;
-    }
-      else {
+    } else if (Number(beganCollege) > 2010){
       alert('Sorry! That answer is too high. Please try again');
       console.log(userName + '\'s guess is too high');
+      numTries++;
+    } else if (isNaN(beganCollege)){
+      alert('Sorry! That is not a numeric answer. Please try again');
+      console.log(userName + '\'s guess is not a number');
+      numTries++;
+    } else {
+      alert('Sorry! I can\'t understand you. Please try again');
+      console.log(userName + '\'s guess is not valid');
       numTries++;
     }
   }
