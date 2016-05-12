@@ -2,6 +2,11 @@
 // Demo code for lecture & lab
 //Grab element from the DOM
 var userAction = document.getElementById('quizMe');
+var prompt1 = document.getElementById('q1');
+var prompt2 = document.getElementById('q2');
+var prompt3 = document.getElementById('q3');
+var prompt4 = document.getElementById('q4');
+var prompt5 = document.getElementById('q5');
 
 //Quiz button. From Stackoverflow question found here: http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
 if (userAction.addEventListener)
@@ -14,7 +19,8 @@ function quizUser() {
   var correct = 0;
 
   //Get user's name
-  var userName = prompt('Thank you for taking this quiz. What is your name?');
+  var q1Text = prompt1.textContent;
+  var userName = prompt(q1Text);
   console.log('The user\'s name is ' + userName);
 
   //Ask which city Lizzie studied abroad in
