@@ -6,10 +6,10 @@ var userAction = document.getElementById('quizMe');
 //Quiz button. From Stackoverflow question found here: http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
 if (userAction.addEventListener)
   userAction.addEventListener('click', quizUser, false);
-else if (userAction.attachEvent)
-  userAction.attachEvent('onclick', quizUser);
+/*else if (userAction.attachEvent)
+  userAction.attachEvent('onclick', quizUser);*/
 
-var quizUser = function(){
+function quizUser() {
   //Keep track of number of correct answers
   var correct = 0;
 
@@ -54,7 +54,7 @@ var quizUser = function(){
   //Ask what year Lizzie graduated college
   var tryAgain = true;
   var numTries = 0;
-  while (tryAgain){
+  while (tryAgain){ //Could have added Number() around prompt once to be more efficient
     var beganCollege = prompt('Knowing that Lizzie completed her Vermont Legal Aid internship 4 years before she started college, in what year did Lizzie start college?');
     if (Number(beganCollege) === 2010){
       alert('Correct! Lizzie did start school in ' + beganCollege);
@@ -93,5 +93,5 @@ var quizUser = function(){
   }
 
   //Give the user their final score
-  alert('You got ' + correct + ' of 5 questions right' + userName + '! Thanks for taking the quiz');
-};
+  alert('You got ' + correct + ' of 5 questions right ' + userName + '! Thanks for taking the quiz');
+}
