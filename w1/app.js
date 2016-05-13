@@ -1,20 +1,20 @@
 // Code 201 Day 02
 // Demo code for lecture & lab
-//Grab element from the DOM
+//Grab element from the DOM for switch and each question to ask the user
 var userAction = document.getElementById('quizMe');
 var prompt1 = document.getElementById('q1');
 var prompt2 = document.getElementById('q2');
 var prompt3 = document.getElementById('q3');
 var prompt4 = document.getElementById('q4');
 var prompt5 = document.getElementById('q5');
+var prompt6 = document.getElementById('q6');
 
 //Quiz button. From Stackoverflow question found here: http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
 /*if (userAction.addEventListener)*/
 userAction.addEventListener('click', quizUser, false);
-/*else if (userAction.attachEvent)
-  userAction.attachEvent('onclick', quizUser);*/
 
-function quizUser() {
+/*For some reason, when I defined this function the other way it always ran twice rather than once. Not three times but twice. Any idea why this is the case? I tried sandboxing it but couldn't find a reason. Even added return at the end of the function */
+var quizUser = function(){
   //Keep track of number of correct answers
   var correct = 0;
 
@@ -25,7 +25,8 @@ function quizUser() {
 
   //Ask which city Lizzie studied abroad in
   var cityNames = ['valparaiso', 'valpo', 'valparaiso, chile', 'valparaiso chile'];
-  var city = (prompt('Ok ' + userName + ', let\'s begin. In what city did Lizzie study abroad?')).toLowerCase();
+  var q2text = prompt2.textContent;
+  var city = prompt(q2text).toLowerCase();
   console.log(userName + ' thinks Lizzie studied abroad in ' + city);
   if (cityNames.indexOf(city) >= 0){
     alert('Congratulations! Lizzie did study abroad in Valparaiso');
@@ -36,8 +37,9 @@ function quizUser() {
   }
 
   //Ask if Lizzie knows C++
-  var skills = prompt('Yes or No; Lizzie is skilled in C++ (Enter \'Y\' or \'N\')');
-  if (skills.toLowerCase() === 'n'){
+  var q3text = prompt3.textContent;
+  var skillsC = prompt(q3text).toLowerCase();
+  if (skillsC === 'n'){
     alert('Well done! Lizzie is not proficient in C++.');
     console.log(userName + ' is right, Lizzie doesn\'t know C++');
     correct++;
@@ -47,8 +49,9 @@ function quizUser() {
   }
 
   //Ask if Lizzie knows C++
-  var skills = prompt('Yes or No; Lizzie is skilled in Adobe InDesign (Enter \'Y\' or \'N\')');
-  if (skills.toLowerCase() === 'y'){
+  var q4text = prompt4.textContent;
+  var skillsID = prompt(q4text).toLowerCase();
+  if (skillsID === 'y'){
     alert('Well done! Lizzie is proficient in Adobe InDesign.');
     console.log(userName + ' is right, Lizzie does know Adobe InDesign');
     correct++;
@@ -58,21 +61,22 @@ function quizUser() {
   }
 
   //Ask what year Lizzie graduated college
+  var q5text = prompt5.textContent;
   var tryAgain = true;
   var numTries = 0;
   while (tryAgain){ //Could have added Number() around prompt once to be more efficient
-    var beganCollege = prompt('Knowing that Lizzie completed her Vermont Legal Aid internship 4 years before she started college, in what year did Lizzie start college?');
-    if (Number(beganCollege) === 2010){
+    var beganCollege = parseInt(prompt(q5text));
+    if (beganCollege === 2010){
       alert('Correct! Lizzie did start school in ' + beganCollege);
       console.log(userName + ' is right, Lizzie did start school in ' + beganCollege);
       if (numTries === 0){
         correct++;}
       tryAgain = false;
-    } else if (Number(beganCollege) < 2010){
+    } else if (beganCollege < 2010){
       alert('Sorry! That answer is too low. Please try again');
       console.log(userName + '\'s guess is too low');
       numTries++;
-    } else if (Number(beganCollege) > 2010){
+    } else if (beganCollege > 2010){
       alert('Sorry! That answer is too high. Please try again');
       console.log(userName + '\'s guess is too high');
       numTries++;
@@ -88,7 +92,8 @@ function quizUser() {
   }
 
   //Ask Lizzie's major in college
-  var major = prompt('Ok, final question. What did Lizzie study in college?');
+  var q6text = prompt6.textContent;
+  var major = prompt(q6text);
   if (major.toLowerCase() === 'geography'){
     alert('Well done! Lizzie did study Geography in college.');
     console.log(userName + ' is right, Lizzie did study Geography');
@@ -100,4 +105,5 @@ function quizUser() {
 
   //Give the user their final score
   alert('You got ' + correct + ' of 5 questions right ' + userName + '! Thanks for taking the quiz');
+  return;
 }
