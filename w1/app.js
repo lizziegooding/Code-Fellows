@@ -4,8 +4,8 @@
 var userAction = document.getElementById('quizMe');
 
 //Quiz button. From Stackoverflow question found here: http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
-if (userAction.addEventListener)
-  userAction.addEventListener('click', quizUser, false);
+/*if (userAction.addEventListener)*/
+userAction.addEventListener('click', quizUser, false);
 /*else if (userAction.attachEvent)
   userAction.attachEvent('onclick', quizUser);*/
 
