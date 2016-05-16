@@ -21,30 +21,69 @@ function hourStats(pizzaArray, deliveryArray){
 
 //Store pizza minimums and maximums in object
 var dPizzas = {
-  t8_11am: [0,4],
-  t11_2am: [0,7],
-  t2_5pm: [2,15],
-  t5_8pm: [15,35],
-  t8_11pm: [12,31],
-  t11_2pm: [5,20]
+  t8_11: [0,4],
+  t11_14: [0,7],
+  t14_17: [2,15],
+  t17_20: [15,35],
+  t20_23: [12,31],
+  t23_2: [5,20]
 };
 
 //Store delivery minimums and maximums in object
 var dDeliveries = {
-  t8_11am: [0,4],
-  t11_2am: [0,4],
-  t2_5pm: [1,4],
-  t5_8pm: [3,8],
-  t8_11pm: [5,12],
-  t11_2pm: [6,11]
+  t8_11: [0,4],
+  t11_14: [0,4],
+  t14_17: [1,4],
+  t17_20: [3,8],
+  t20_23: [5,12],
+  t23_2: [6,11]
 };
+
+var hours = [['t8', 't9', 't10'], ['t11', 't12', 't13'], ['t14', 't15', 't16'], ['t17', 't18', 't19'], ['t20', 't21', 't22'], ['t23', 't0', 't1']];
 
 function Location(name){
   this.name = name;
-  this.t8am = hourStats(dPizzas.t8_11am,dDeliveries.t8_11am);
-}
+  this.shop = {};
+  for (i = 0; i < hours.length; i++){
+    if (hours[i][0] === 't8'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t8_11,dDeliveries.t8_11);
+      }
+    }
+    else if (hours[i][0] === 't11'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t11_14,dDeliveries.t11_14);
+      }
+    }
+    else if (hours[i][0] === 't14'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t14_17,dDeliveries.t14_17);
+      }
+    }
+    else if (hours[i][0] === 't17'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t17_20,dDeliveries.t17_20);
+      }
+    }
+    else if (hours[i][0] === 't20'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t20_23,dDeliveries.t20_23);
+      }
+    }
+    else if (hours[i][0] === 't23'){
+      for (j = 0; j < 3; j++){
+        this.shop[hours[i][j]] = hourStats(dPizzas.t23_2,dDeliveries.t23_2);
+      }
+    }
+    else {
+      console.log('ERROR');
+    }
+  };
+};
 
-console.log(hourStats(dPizzas.t8_11pm,dDeliveries.t8_11pm));
+var hillsboro = new Location('Hillsboro');
+
+console.table(hillsboro);
 //Create each location object using literal notation
 // var hillsboro = {
 //   t8am: randCalc(mktAnalysis.t8_11am),
