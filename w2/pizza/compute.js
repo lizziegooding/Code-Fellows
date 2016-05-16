@@ -39,8 +39,10 @@ var dDeliveries = {
   t23_2: [6,11]
 };
 
+//Array of Key values for object properties
 var hours = [['t8', 't9', 't10'], ['t11', 't12', 't13'], ['t14', 't15', 't16'], ['t17', 't18', 't19'], ['t20', 't21', 't22'], ['t23', 't0', 't1']];
 
+//Constructor object that automatically generates random numbers given a location name
 function Location(name){
   this.name = name;
   this.shop = {};
@@ -81,10 +83,15 @@ function Location(name){
   };
 };
 
+//Create new location obejects with each of the 6 given locations
 var hillsboro = new Location('Hillsboro');
+var pearl = new Location('Pearl');
+var downtownPDX = new Location('Downtown Portland');
+var buckman = new Location('Buckman');
+var PDXairport = new Location('Portland Airport');
+var clackamas = new Location('Clackamas');
 
-console.table(hillsboro);
-//Create each location object using literal notation
+//How you would create each location object using literal notation
 // var hillsboro = {
 //   t8am: randCalc(mktAnalysis.t8_11am),
 //   t9am: randCalc(mktAnalysis.t8_11am),
@@ -108,12 +115,4 @@ console.table(hillsboro);
 //
 //   t11pm: randCalc(mktAnalysis.t11_2pm),
 //   t12am: randCalc(mktAnalysis.t11_2pm),
-//   t1am: randCalc(mktAnalysis.t11_2pm)
-//   // t8_11: [0,4],
-//   // t11_2: [0,7],
-//   // t2_5: [2,15],
-//   // t5_8: [15,35],
-//   // t8_11: [12,31],
-//   // t11_2: [5,20]
-//   // genRandom: function() {
-// };
+//   t1am: randCalc(mktAnalysis.t11_2pm)}
