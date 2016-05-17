@@ -1,3 +1,264 @@
+//**********DATA************//
+//Store pizza minimums and maximums in object
+var dPizzas = {
+  hillsboro: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,7],
+    t12: [0,7],
+    t13: [0,7],
+    t14: [2,15],
+    t15: [2,15],
+    t16: [2,15],
+    t17: [15,35],
+    t18: [15,35],
+    t19: [15,35],
+    t20: [12,31],
+    t21: [12,31],
+    t22: [12,31],
+    t23: [5,20],
+    t00: [5,20],
+    t01: [5,20]
+  },
+  pearl: {
+    t08: [1,7],
+    t09: [1,7],
+    t10: [1,7],
+    t11: [5,9],
+    t12: [5,9],
+    t13: [5,9],
+    t14: [2,13],
+    t15: [2,13],
+    t16: [2,13],
+    t17: [18,32],
+    t18: [18,32],
+    t19: [18,32],
+    t20: [5,12],
+    t21: [5,12],
+    t22: [5,12],
+    t23: [8,20],
+    t00: [8,20],
+    t01: [8,20]
+  },
+  downtownPDX: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,7],
+    t12: [0,7],
+    t13: [0,7],
+    t14: [2,15],
+    t15: [2,15],
+    t16: [2,15],
+    t17: [10,26],
+    t18: [10,26],
+    t19: [10,26],
+    t20: [8,22],
+    t21: [8,22],
+    t22: [8,22],
+    t23: [0,8],
+    t00: [0,8],
+    t01: [0,8]
+  },
+  buckman: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,7],
+    t12: [0,7],
+    t13: [0,7],
+    t14: [5,15],
+    t15: [5,15],
+    t16: [5,15],
+    t17: [25,39],
+    t18: [25,39],
+    t19: [25,39],
+    t20: [22,36],
+    t21: [22,36],
+    t22: [22,36],
+    t23: [16,31],
+    t00: [16,31],
+    t01: [16,31],
+  },
+  PDXairport: {
+    t08: [2,7],
+    t09: [2,7],
+    t10: [2,7],
+    t11: [3,9],
+    t12: [3,9],
+    t13: [3,9],
+    t14: [1,5],
+    t15: [1,5],
+    t16: [1,5],
+    t17: [5,13],
+    t18: [5,13],
+    t19: [5,13],
+    t20: [22,42],
+    t21: [22,42],
+    t22: [22,42],
+    t23: [15,21],
+    t00: [15,21],
+    t01: [15,21]
+  },
+  clackamas: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,7],
+    t12: [0,7],
+    t13: [0,7],
+    t14: [2,15],
+    t15: [2,15],
+    t16: [2,15],
+    t17: [6,19],
+    t18: [6,19],
+    t19: [6,19],
+    t20: [4,8],
+    t21: [4,8],
+    t22: [4,8],
+    t23: [2,5],
+    t00: [2,5],
+    t01: [2,5]
+  }
+};
+
+//Store delivery minimums and maximums in object
+var dDeliveries = {
+  hillsboro: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,4],
+    t12: [0,4],
+    t13: [0,4],
+    t14: [1,4],
+    t15: [1,4],
+    t16: [1,4],
+    t17: [3,8],
+    t18: [3,8],
+    t19: [3,8],
+    t20: [5,12],
+    t21: [5,12],
+    t22: [5,12],
+    t23: [5,11],
+    t00: [5,11],
+    t01: [5,11]
+  },
+  pearl: {
+    t08: [1,3],
+    t09: [1,3],
+    t10: [1,3],
+    t11: [2,8],
+    t12: [2,8],
+    t13: [2,8],
+    t14: [1,6],
+    t15: [1,6],
+    t16: [1,6],
+    t17: [3,9],
+    t18: [3,9],
+    t19: [3,9],
+    t20: [1,3],
+    t21: [1,3],
+    t22: [1,3],
+    t23: [6,16],
+    t00: [6,16],
+    t01: [6,16]
+  },
+  downtownPDX: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,4],
+    t12: [0,4],
+    t13: [0,4],
+    t14: [1,4],
+    t15: [1,4],
+    t16: [1,4],
+    t17: [4,6],
+    t18: [4,6],
+    t19: [4,6],
+    t20: [7,15],
+    t21: [7,15],
+    t22: [7,15],
+    t23: [0,2],
+    t00: [0,2],
+    t01: [0,2]
+  },
+  buckman: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,4],
+    t12: [0,4],
+    t13: [0,4],
+    t14: [0,4],
+    t15: [0,4],
+    t16: [0,4],
+    t17: [13,18],
+    t18: [13,18],
+    t19: [13,18],
+    t20: [5,22],
+    t21: [5,22],
+    t22: [5,22],
+    t23: [5,21],
+    t00: [5,21],
+    t01: [5,21]
+  },
+  PDXairport: {
+    t08: [0,0],
+    t09: [0,0],
+    t10: [0,0],
+    t11: [0,0],
+    t12: [0,0],
+    t13: [0,0],
+    t14: [0,0],
+    t15: [0,0],
+    t16: [0,0],
+    t17: [0,0],
+    t18: [0,0],
+    t19: [0,0],
+    t20: [0,0],
+    t21: [0,0],
+    t22: [0,0],
+    t23: [0,0],
+    t00: [0,0],
+    t01: [0,0]
+  },
+  clackamas: {
+    t08: [0,4],
+    t09: [0,4],
+    t10: [0,4],
+    t11: [0,4],
+    t12: [0,4],
+    t13: [0,4],
+    t14: [1,4],
+    t15: [1,4],
+    t16: [1,4],
+    t17: [5,9],
+    t18: [5,9],
+    t19: [5,9],
+    t20: [2,5],
+    t21: [2,5],
+    t22: [2,5],
+    t23: [2,4],
+    t00: [2,4],
+    t01: [2,4]
+  }
+};
+
+//Use object.key method to return an array of key values from previously defined objects
+var hours = Object.keys(dPizzas.hillsboro);
+console.log(hours);
+
+//Define locations
+var locations = Object.keys(dPizzas);
+console.log(locations);
+console.log(dPizzas['hillsboro']['t09']);
+// var locations = ['hillsboro', 'pearl', 'downtownPDX', 'buckman', 'PDXairport', 'clackamas'];
+
+//******************************GLOBAL FUNCTIONS***********************************//
+
 //Create a function which given two minimum and maximum numbers returns a random number
 function randCalc(minMaxArray){
   return Math.floor((Math.random() * (minMaxArray[1] - minMaxArray[0] + 1)) + minMaxArray[0]);
@@ -9,99 +270,39 @@ function hourStats(pizzaArray, deliveryArray){
   var deliveries = randCalc(deliveryArray); //2
   if (pizzas < deliveries){
     deliveries = pizzas;
-    var drivers = Math.ceil(deliveries / 3);
   }
-  else {
-    var drivers = Math.ceil(deliveries / 3);
-  }
+  var drivers = Math.ceil(deliveries / 3);
   var output = [pizzas, deliveries, drivers];
   return output;
 }
 
-//Store pizza minimums and maximums in object
-var dPizzas = {
-  t8_11: [0,4],
-  t11_14: [0,7],
-  t14_17: [2,15],
-  t17_20: [15,35],
-  t20_23: [12,31],
-  t23_2: [5,20]
-};
-
-//Store delivery minimums and maximums in object
-var dDeliveries = {
-  t8_11: [0,4],
-  t11_14: [0,4],
-  t14_17: [1,4],
-  t17_20: [3,8],
-  t20_23: [5,12],
-  t23_2: [6,11]
-};
-
-//Array of Key values for object properties
-var hours = [['t8', 't9', 't10'], ['t11', 't12', 't13'], ['t14', 't15', 't16'], ['t17', 't18', 't19'], ['t20', 't21', 't22'], ['t23', 't0', 't1']];
+// Object.prototype.storeData = function() {
+//   this.isOn = (! this.isOn);
+//   console.log('isOn = ' + this.isOn);
+// }
+//
+// console.log(hourStats([0,2],[4,5]));
+// console.log(hourStats(dPizzas['hillsboro']['t08'],dDeliveries['hillsboro']['t08']));
 
 //Constructor object that automatically generates random numbers given a location name
-function Location(name){
-  this.name = name;
-  this.shop = {};
-  var total = 0;
-  for (i = 0; i < hours.length; i++){
-    if (hours[i][0] === 't8'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t8_11,dDeliveries.t8_11);
-        total += this.shop[hours[i][j]][0];
-      }
+function pizzaStore(places){
+  for (var hh = 0; hh < places.length; hh++){
+    var store = places[hh];
+    var pS = this;
+    pS[store] = {};
+    var total = 0;
+    for (var ii = 0; ii < hours.length; ii++){ //
+      var time = hours[ii];
+      pS[store][time] = hourStats(dPizzas[store][time], dDeliveries[store][time]);
+      total += pS[places[hh]][hours[ii]][0];
     }
-    else if (hours[i][0] === 't11'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t11_14,dDeliveries.t11_14);
-        total += this.shop[hours[i][j]][0];
-      }
-    }
-    else if (hours[i][0] === 't14'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t14_17,dDeliveries.t14_17);
-        total += this.shop[hours[i][j]][0];
-      }
-    }
-    else if (hours[i][0] === 't17'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t17_20,dDeliveries.t17_20);
-        total += this.shop[hours[i][j]][0];
-      }
-    }
-    else if (hours[i][0] === 't20'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t20_23,dDeliveries.t20_23);
-        total += this.shop[hours[i][j]][0];
-      }
-    }
-    else if (hours[i][0] === 't23'){
-      for (j = 0; j < 3; j++){
-        this.shop[hours[i][j]] = hourStats(dPizzas.t23_2,dDeliveries.t23_2);
-        total += this.shop[hours[i][j]][0];
-      }
-    }
-    else {
-      console.log('ERROR');
-    }
-  };
-  this.shop.dailyPizzas = total;
+    pS[places[hh]]['dailyPizzas'] = total;
+  }
 };
 
-//Using object literal notation
-var basicRecipe = {
-  tomatoes: 3,
-  cheese: 'parmesan',
-  crust: 'white'
-};
+var pizza3001 = new pizzaStore(locations);
+console.log(pizza3001);
 
-var specialRecipe = {
-  tomatoes: 5,
-  cheese: 'three cheese blend',
-  crust: 'cheesey'
-};
 // console.log(hillsboro);
 // console.log(hillsboro.shop['t0'][0]);
 // console.log(hillsboro.shop.t0[1]);
@@ -109,40 +310,104 @@ var specialRecipe = {
 //  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
 
 //Create a loop the generates data for sales page
-function postData(city, index){
-  var hourIDs = ['t8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21', 't22', 't23', 't0', 't1'];
-  for (x = 0; x < hourIDs.length; x++){
-    var newP = document.createElement('p');
-    var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
-    newP.appendChild(newTxt);
-    var position = document.getElementsByTagName('h2')[index];
-    position.appendChild(newP);
-      // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
+function postData(){ //TODO: clean up variable names
+  var headers = ['Time','Pizzas','Deliveries','Drivers'];
+  //get reference for parent element
+  for (var xx = 0; xx < locations.length; xx++){
+    var div = document.getElementById([locations[xx]]);
+  //create table and table body element
+    var newTable = document.createElement('table');
+    var newTableBody = document.createElement('tbody');
+    var newTH = document.createElement('thead');
+  // Make <tr> a child of <table>
+    var newTRH = document.createElement('tr');
+    //Add table header row
+    for (var hh = 0; hh < headers.length; hh++){
+      var newTHTR = document.createElement('td');
+      var THTRtext = document.createTextNode(headers[hh]);
+      newTHTR.appendChild(THTRtext);
+      newTRH.appendChild(newTHTR);
+    }
+    newTH.appendChild(newTRH);
+    for (var yy = 0; yy < hours.length; yy++){
+      //create table row, one for each time
+      var newTR = document.createElement('tr');
+      var newTHtime = document.createElement('th');
+      var THtimeText = document.createTextNode(hours[yy].slice(-2) + ':00 ');
+      newTHtime.appendChild(THtimeText);
+      newTR.appendChild(newTHtime);
+      for (var zz = 0; zz < 3; zz++){
+        var newTD = document.createElement('td');
+        var TDtext = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
+        newTD.appendChild(TDtext);
+        newTR.appendChild(newTD);
+        // console.log(pizza3001[locations[xx]][hours[yy]]);
+      }
+      newTableBody.appendChild(newTR);
+    }
+    newTable.appendChild(newTH);
+    newTable.appendChild(newTableBody);
+    div.appendChild(newTable);
   }
 };
 
+function postSummary(){
+  var summary = document.getElementById('summary');
+  for (var kk = 0; kk < locations.length; kk++){
+    var newLi = document.createElement('li');
+    var newTxt = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / 17) + ' pizzas per hour.');
+    newLi.appendChild(newTxt);
+  // var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+    summary.appendChild(newLi);
+  }
+}
+
+postData();
+postSummary();
+
+    // var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
+      // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
+//"The downtown store sold NNNN pizzas last week, the Clackamas store sold MMMM pizzas last week, etc.", and total weekly sales per hour across all stores (i.e., to find a total for the "5pm to 6pm" time slot, add together the number of pizzas sold between 5pm and 6pm for each store, and do this for each time slot).
+
+//
+//     var newP = document.createElement('p');
+//     var newTxt = document.createTextNode(hours[x].slice(-(hours[x].length - 1)) + ':00 ' + hillsboro.shop[hours[x]][0] + ' pizzas, ' + hillsboro.shop[hours[x]][1] + ' deliveries -- [' + hillsboro.shop[hours[x]][2] + ' drivers recommended]');
+//     newP.appendChild(newTxt);
+//     var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+//     place.appendChild(newP);
+//       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
+//   }
+// };
+
+//**********CALL FUNCTIONS, CONNECT TO DOM************//
+
 //Create new location obejects with each of the 6 given locations
-var hillsboro = new Location('Hillsboro');
-var pearl = new Location('Pearl');
-var downtownPDX = new Location('Downtown Portland');
-var buckman = new Location('Buckman');
-var PDXairport = new Location('Portland Airport');
-var clackamas = new Location('Clackamas');
+// var hillsboro = new Location('hillsboro');
+// console.log(hillsboro);
+// var pearl = new Location('Pearl');
+// var downtownPDX = new Location('Downtown Portland');
+// var buckman = new Location('Buckman');
+// var PDXairport = new Location('Portland Airport');
+// var clackamas = new Location('Clackamas');
 
-var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 7;
-console.log(weeklyPizzas);
+//Calculate weekly pizzas
+// var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
+// console.log(weeklyPizzas);
 
-var totPizzas = document.getElementById('total');
-totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
+//Write to the document the total weekly pizzas at all locations
+// var totPizzas = document.getElementById('total');
+// totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
 
-postData('hillsboro',0);
-postData('pearl',1);
-postData('downtownPDX',2);
-postData('buckman',3);
-postData('PDXairport',4);
-postData('clackamas',5);
+//Call postData function with each location
+// postData('hillsboro',0);
+// postData('pearl',1);
+// postData('downtownPDX',2);
+// postData('buckman',3);
+// postData('PDXairport',4);
+// postData('clackamas',5);
 
-var basicCrust = document.getElementById('c1');
-basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
-var specialCrust = document.getElementById('c2');
-specialCrust.textContent = 'But ' + specialRecipe.crust + ' crust is our most special';
+//Write to document object literals
+// var basicCrust = document.getElementById('c1');
+// basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
+// var specialCrust = document.getElementById('c2');
+// specialCrust.textContent = 'But ' + specialRecipe.crust + ' crust is our most special';
