@@ -310,7 +310,7 @@ console.log(pizza3001);
 //  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
 
 //Create a loop the generates data for sales page
-function postData(){
+function postData(){ //TODO: clean up variable names
   var headers = ['Time','Pizzas','Deliveries','Drivers'];
   //get reference for parent element
   for (var xx = 0; xx < locations.length; xx++){
@@ -351,7 +351,23 @@ function postData(){
   }
 };
 
+function postSummary(){
+  var summary = document.getElementById('summary');
+  for (var kk = 0; kk < locations.length; kk++){
+    var newLi = document.createElement('li');
+    var newTxt = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / 17) + ' pizzas per hour.');
+    newLi.appendChild(newTxt);
+  // var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+    summary.appendChild(newLi);
+  }
+}
+
 postData();
+postSummary();
+
+    // var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
+      // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
+//"The downtown store sold NNNN pizzas last week, the Clackamas store sold MMMM pizzas last week, etc.", and total weekly sales per hour across all stores (i.e., to find a total for the "5pm to 6pm" time slot, add together the number of pizzas sold between 5pm and 6pm for each store, and do this for each time slot).
 
 //
 //     var newP = document.createElement('p');
