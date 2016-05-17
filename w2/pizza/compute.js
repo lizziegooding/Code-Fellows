@@ -310,11 +310,26 @@ console.log(pizza3001);
 //  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
 
 //Create a loop the generates data for sales page
-// function postData(city, index){
-//   var hourIDs = ['t8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21', 't22', 't23', 't0', 't1'];
-//   for (x = 0; x < hourIDs.length; x++){
+var hillsboro = document.getElementById('hillsboro');
+var newTable = document.createElement('table');
+var newTR = document.createElement('tr');
+// Make <tr> a child of <table>
+newTable.appendChild(newTR);
+
+function postData(city){
+  for (var xx = 0; xx < hours.length; xx++){
+    for (var yy = 0; yy < 3; yy++){
+      var newTD = document.createElement('td');
+      newTD.textContent = pizza3001[city][hours[xx]][yy];
+      newTR.appendChild(newTD);
+    }
+  }
+};
+postData('hillsboro');
+hillsboro.appendChild(newTable);
+//
 //     var newP = document.createElement('p');
-//     var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
+//     var newTxt = document.createTextNode(hours[x].slice(-(hours[x].length - 1)) + ':00 ' + hillsboro.shop[hours[x]][0] + ' pizzas, ' + hillsboro.shop[hours[x]][1] + ' deliveries -- [' + hillsboro.shop[hours[x]][2] + ' drivers recommended]');
 //     newP.appendChild(newTxt);
 //     var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
 //     place.appendChild(newP);
