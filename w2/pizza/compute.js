@@ -310,23 +310,26 @@ console.log(pizza3001);
 //  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
 
 //Create a loop the generates data for sales page
-var hillsboro = document.getElementById('hillsboro');
-var newTable = document.createElement('table');
-var newTR = document.createElement('tr');
-// Make <tr> a child of <table>
-newTable.appendChild(newTR);
-
-function postData(city){
-  for (var xx = 0; xx < hours.length; xx++){
-    for (var yy = 0; yy < 3; yy++){
-      var newTD = document.createElement('td');
-      newTD.textContent = pizza3001[city][hours[xx]][yy];
-      newTR.appendChild(newTD);
+function postData(){
+  for (var xx = 0; xx < locations.length; xx++){
+    var placeDiv = document.getElementById([locations[xx]]);
+    var newTable = document.createElement('table');
+    var newTR = document.createElement('tr');
+  // Make <tr> a child of <table>
+    newTable.appendChild(newTR);
+    for (var yy = 0; yy < hours.length; yy++){
+      for (var zz = 0; zz < 3; zz++){
+        var newTD = document.createElement('td');
+        newTD.textContent = pizza3001[locations[xx]][hours[yy]][zz];
+        newTR.appendChild(newTD);
+      }
+      placeDiv.appendChild(newTable);
     }
   }
 };
-postData('hillsboro');
-hillsboro.appendChild(newTable);
+
+postData();
+
 //
 //     var newP = document.createElement('p');
 //     var newTxt = document.createTextNode(hours[x].slice(-(hours[x].length - 1)) + ':00 ' + hillsboro.shop[hours[x]][0] + ' pizzas, ' + hillsboro.shop[hours[x]][1] + ' deliveries -- [' + hillsboro.shop[hours[x]][2] + ' drivers recommended]');
