@@ -46,7 +46,7 @@ function Location(name){
   this.name = name;
   this.shop = {};
   var total = 0;
-  for (i = 0; i < hours.length; i++){
+  for (i = 0; i < hours.length; i++){ //index / 3 round down
     if (hours[i][0] === 't8'){
       for (j = 0; j < 3; j++){
         this.shop[hours[i][j]] = hourStats(dPizzas.t8_11,dDeliveries.t8_11);
@@ -115,8 +115,8 @@ function postData(city, index){
     var newP = document.createElement('p');
     var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
     newP.appendChild(newTxt);
-    var position = document.getElementsByTagName('h2')[index];
-    position.appendChild(newP);
+    var place = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+    place.appendChild(newP);
       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
   }
 };
@@ -129,12 +129,15 @@ var buckman = new Location('Buckman');
 var PDXairport = new Location('Portland Airport');
 var clackamas = new Location('Clackamas');
 
-var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 7;
+//Calculate weekly pizzas
+var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
 console.log(weeklyPizzas);
 
+//Write to the document the total weekly pizzas at all locations
 var totPizzas = document.getElementById('total');
 totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
 
+//Call postData function with each location
 postData('hillsboro',0);
 postData('pearl',1);
 postData('downtownPDX',2);
@@ -142,6 +145,7 @@ postData('buckman',3);
 postData('PDXairport',4);
 postData('clackamas',5);
 
+//Write to document object literals
 var basicCrust = document.getElementById('c1');
 basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
 var specialCrust = document.getElementById('c2');
