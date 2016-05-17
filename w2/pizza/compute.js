@@ -26,8 +26,8 @@ var dPizzas = {
     t09: [1,7],
     t10: [1,7],
     t11: [5,9],
-    t11: [5,9],
-    t11: [5,9],
+    t12: [5,9],
+    t13: [5,9],
     t14: [2,13],
     t15: [2,13],
     t16: [2,13],
@@ -288,19 +288,15 @@ function hourStats(pizzaArray, deliveryArray){
 function pizzaStore(places){
   for (var hh = 0; hh < places.length; hh++){
     var store = places[hh];
-    console.log(store);
-    this[store] = {};
-    console.log(this[store]);
-    // this[locations[hh]]['name'] = locations[hh];
+    var pS = this;
+    pS[store] = {};
     var total = 0;
     for (var ii = 0; ii < hours.length; ii++){ //
       var time = hours[ii];
-      console.log(typeof(store), typeof(time));
-      this[store][time] = hourStats(dPizzas[store][time], dDeliveries[store][time]);
-      // this[places[hh]][hours[ii]] = hourStats(dPizzas[places[hh]][hours[ii]], dDeliveries[places[hh]][hours[ii]]);
-      total += this[places[hh]][hours[ii]][0];
+      pS[store][time] = hourStats(dPizzas[store][time], dDeliveries[store][time]);
+      total += pS[places[hh]][hours[ii]][0];
     }
-    this[places[hh]]['dailyPizzas'] = total;
+    pS[places[hh]]['dailyPizzas'] = total;
   }
 };
 
@@ -320,7 +316,7 @@ console.log(pizza3001);
 //     var newP = document.createElement('p');
 //     var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
 //     newP.appendChild(newTxt);
-//     var place = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+//     var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
 //     place.appendChild(newP);
 //       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
 //   }
