@@ -1,23 +1,4 @@
-//Create a function which given two minimum and maximum numbers returns a random number
-function randCalc(minMaxArray){
-  return Math.floor((Math.random() * (minMaxArray[1] - minMaxArray[0] + 1)) + minMaxArray[0]);
-}
-
-//Call randCalc function and return an array with pizza, deliveries and drivers information
-function hourStats(pizzaArray, deliveryArray){
-  var pizzas = randCalc(pizzaArray); //4
-  var deliveries = randCalc(deliveryArray); //2
-  if (pizzas < deliveries){
-    deliveries = pizzas;
-    var drivers = Math.ceil(deliveries / 3);
-  }
-  else {
-    var drivers = Math.ceil(deliveries / 3);
-  }
-  var output = [pizzas, deliveries, drivers];
-  return output;
-}
-
+//**********DATA************//
 //Store pizza minimums and maximums in object
 var dPizzas = {
   t8_11: [0,4],
@@ -40,6 +21,27 @@ var dDeliveries = {
 
 //Array of Key values for object properties
 var hours = [['t8', 't9', 't10'], ['t11', 't12', 't13'], ['t14', 't15', 't16'], ['t17', 't18', 't19'], ['t20', 't21', 't22'], ['t23', 't0', 't1']];
+
+//**********GLOBAL FUNCTIONS************//
+//Create a function which given two minimum and maximum numbers returns a random number
+function randCalc(minMaxArray){
+  return Math.floor((Math.random() * (minMaxArray[1] - minMaxArray[0] + 1)) + minMaxArray[0]);
+}
+
+//Call randCalc function and return an array with pizza, deliveries and drivers information
+function hourStats(pizzaArray, deliveryArray){
+  var pizzas = randCalc(pizzaArray); //4
+  var deliveries = randCalc(deliveryArray); //2
+  if (pizzas < deliveries){
+    deliveries = pizzas;
+    var drivers = Math.ceil(deliveries / 3);
+  }
+  else {
+    var drivers = Math.ceil(deliveries / 3);
+  }
+  var output = [pizzas, deliveries, drivers];
+  return output;
+}
 
 //Constructor object that automatically generates random numbers given a location name
 function Location(name){
@@ -91,17 +93,17 @@ function Location(name){
 };
 
 //Using object literal notation
-var basicRecipe = {
-  tomatoes: 3,
-  cheese: 'parmesan',
-  crust: 'white'
-};
-
-var specialRecipe = {
-  tomatoes: 5,
-  cheese: 'three cheese blend',
-  crust: 'cheesey'
-};
+// var basicRecipe = {
+//   tomatoes: 3,
+//   cheese: 'parmesan',
+//   crust: 'white'
+// };
+//
+// var specialRecipe = {
+//   tomatoes: 5,
+//   cheese: 'three cheese blend',
+//   crust: 'cheesey'
+// };
 // console.log(hillsboro);
 // console.log(hillsboro.shop['t0'][0]);
 // console.log(hillsboro.shop.t0[1]);
@@ -120,6 +122,8 @@ function postData(city, index){
       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
   }
 };
+
+//**********CALL FUNCTIONS, CONNECT TO DOM************//
 
 //Create new location obejects with each of the 6 given locations
 var hillsboro = new Location('Hillsboro');
