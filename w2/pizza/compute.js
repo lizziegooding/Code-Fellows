@@ -247,10 +247,17 @@ var dDeliveries = {
   }
 };
 
-//Array of Key values for object properties //TODO: could write a function that returns all key values from one of the location objects
-var hours = ['t08', 't09', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21', 't22', 't23', 't00', 't01'];
+//Use object.key method to return an array of key values from previously defined objects
+var hours = Object.keys(dPizzas.hillsboro);
+console.log(hours);
 
-//***************************************GLOBAL FUNCTIONS******************************************//
+//Define locations
+var locations = Object.keys(dPizzas);
+console.log(locations);
+console.log(dPizzas['hillsboro']['t09']);
+// var locations = ['hillsboro', 'pearl', 'downtownPDX', 'buckman', 'PDXairport', 'clackamas'];
+
+//******************************GLOBAL FUNCTIONS***********************************//
 
 //Create a function which given two minimum and maximum numbers returns a random number
 function randCalc(minMaxArray){
@@ -269,74 +276,37 @@ function hourStats(pizzaArray, deliveryArray){
   return output;
 }
 
-console.log(hourStats([0,2],[4,5]));
-console.log(hourStats(dPizzas['hillsboro']['t08'],dDeliveries['hillsboro']['t08']));
+// Object.prototype.storeData = function() {
+//   this.isOn = (! this.isOn);
+//   console.log('isOn = ' + this.isOn);
+// }
+//
+// console.log(hourStats([0,2],[4,5]));
+// console.log(hourStats(dPizzas['hillsboro']['t08'],dDeliveries['hillsboro']['t08']));
 
 //Constructor object that automatically generates random numbers given a location name
-function Location(name){
-  this.name = name;
-  this.shop = {};
-  var total = 0;
-  for (i = 0; i < hours.length; i++){ //
-    // if (hours[i][0] === 't8'){
-      // for (j = 0; j < 3; j++){
-    this.shop[hours[i]] = hourStats(dPizzas[name][hours[i]],dDeliveries[name][hours[i]]);
-    // total += this.shop[hours[i]][0];
+function pizzaStore(places){
+  for (var hh = 0; hh < places.length; hh++){
+    var store = places[hh];
+    console.log(store);
+    this[store] = {};
+    console.log(this[store]);
+    // this[locations[hh]]['name'] = locations[hh];
+    var total = 0;
+    for (var ii = 0; ii < hours.length; ii++){ //
+      var time = hours[ii];
+      console.log(typeof(store), typeof(time));
+      this[store][time] = hourStats(dPizzas[store][time], dDeliveries[store][time]);
+      // this[places[hh]][hours[ii]] = hourStats(dPizzas[places[hh]][hours[ii]], dDeliveries[places[hh]][hours[ii]]);
+      total += this[places[hh]][hours[ii]][0];
+    }
+    this[places[hh]]['dailyPizzas'] = total;
   }
 };
 
-var hillsboro = new Location('hillsboro');
-console.log(hillsboro);
+var pizza3001 = new pizzaStore(locations);
+console.log(pizza3001);
 
-//     else if (hours[i][0] === 't11'){
-//       for (j = 0; j < 3; j++){
-//         this.shop[hours[i][j]] = hourStats(dPizzas.t11_14,dDeliveries.t11_14);
-//         total += this.shop[hours[i][j]][0];
-//       }
-//     }
-//     else if (hours[i][0] === 't14'){
-//       for (j = 0; j < 3; j++){
-//         this.shop[hours[i][j]] = hourStats(dPizzas.t14_17,dDeliveries.t14_17);
-//         total += this.shop[hours[i][j]][0];
-//       }
-//     }
-//     else if (hours[i][0] === 't17'){
-//       for (j = 0; j < 3; j++){
-//         this.shop[hours[i][j]] = hourStats(dPizzas.t17_20,dDeliveries.t17_20);
-//         total += this.shop[hours[i][j]][0];
-//       }
-//     }
-//     else if (hours[i][0] === 't20'){
-//       for (j = 0; j < 3; j++){
-//         this.shop[hours[i][j]] = hourStats(dPizzas.t20_23,dDeliveries.t20_23);
-//         total += this.shop[hours[i][j]][0];
-//       }
-//     }
-//     else if (hours[i][0] === 't23'){
-//       for (j = 0; j < 3; j++){
-//         this.shop[hours[i][j]] = hourStats(dPizzas.t23_2,dDeliveries.t23_2);
-//         total += this.shop[hours[i][j]][0];
-//       }
-//     }
-//     else {
-//       console.log('ERROR');
-//     }
-//   };
-//   this.shop.dailyPizzas = total;
-// };
-
-//Using object literal notation
-// var basicRecipe = {
-//   tomatoes: 3,
-//   cheese: 'parmesan',
-//   crust: 'white'
-// };
-//
-// var specialRecipe = {
-//   tomatoes: 5,
-//   cheese: 'three cheese blend',
-//   crust: 'cheesey'
-// };
 // console.log(hillsboro);
 // console.log(hillsboro.shop['t0'][0]);
 // console.log(hillsboro.shop.t0[1]);
@@ -344,17 +314,17 @@ console.log(hillsboro);
 //  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
 
 //Create a loop the generates data for sales page
-function postData(city, index){
-  var hourIDs = ['t8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21', 't22', 't23', 't0', 't1'];
-  for (x = 0; x < hourIDs.length; x++){
-    var newP = document.createElement('p');
-    var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
-    newP.appendChild(newTxt);
-    var place = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
-    place.appendChild(newP);
-      // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
-  }
-};
+// function postData(city, index){
+//   var hourIDs = ['t8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21', 't22', 't23', 't0', 't1'];
+//   for (x = 0; x < hourIDs.length; x++){
+//     var newP = document.createElement('p');
+//     var newTxt = document.createTextNode(hourIDs[x].slice(-(hourIDs[x].length - 1)) + ':00 ' + hillsboro.shop[hourIDs[x]][0] + ' pizzas, ' + hillsboro.shop[hourIDs[x]][1] + ' deliveries -- [' + hillsboro.shop[hourIDs[x]][2] + ' drivers recommended]');
+//     newP.appendChild(newTxt);
+//     var place = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
+//     place.appendChild(newP);
+//       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
+//   }
+// };
 
 //**********CALL FUNCTIONS, CONNECT TO DOM************//
 
@@ -368,23 +338,23 @@ function postData(city, index){
 // var clackamas = new Location('Clackamas');
 
 //Calculate weekly pizzas
-var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
-console.log(weeklyPizzas);
+// var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
+// console.log(weeklyPizzas);
 
 //Write to the document the total weekly pizzas at all locations
-var totPizzas = document.getElementById('total');
-totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
+// var totPizzas = document.getElementById('total');
+// totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
 
 //Call postData function with each location
-postData('hillsboro',0);
-postData('pearl',1);
-postData('downtownPDX',2);
-postData('buckman',3);
-postData('PDXairport',4);
-postData('clackamas',5);
+// postData('hillsboro',0);
+// postData('pearl',1);
+// postData('downtownPDX',2);
+// postData('buckman',3);
+// postData('PDXairport',4);
+// postData('clackamas',5);
 
 //Write to document object literals
-var basicCrust = document.getElementById('c1');
-basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
-var specialCrust = document.getElementById('c2');
-specialCrust.textContent = 'But ' + specialRecipe.crust + ' crust is our most special';
+// var basicCrust = document.getElementById('c1');
+// basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
+// var specialCrust = document.getElementById('c2');
+// specialCrust.textContent = 'But ' + specialRecipe.crust + ' crust is our most special';
