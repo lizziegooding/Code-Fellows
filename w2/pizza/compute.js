@@ -311,20 +311,38 @@ console.log(pizza3001);
 
 //Create a loop the generates data for sales page
 function postData(){
+  var headers = ['Pizzas','Deliveries','Drivers'];
+  //get reference for parent element
   for (var xx = 0; xx < locations.length; xx++){
-    var placeDiv = document.getElementById([locations[xx]]);
+    var div = document.getElementById([locations[xx]]);
+  //create table and table body element
     var newTable = document.createElement('table');
-    var newTR = document.createElement('tr');
+    var newTableBody = document.createElement('tbody');
+    var newTH = document.createElement('thead');
   // Make <tr> a child of <table>
-    newTable.appendChild(newTR);
+    var newTRH = document.createElement('tr');
+    for (var hh = 0; hh < headers.length; hh++){
+      var newTHTR = document.createElement('td');
+      var THTRtext = document.createTextNode(headers[hh]);
+      newTHTR.appendChild(THTRtext);
+      newTRH.appendChild(newTHTR);
+    }
+    newTH.appendChild(newTRH);
     for (var yy = 0; yy < hours.length; yy++){
+      //create table row, one for each time
+      var newTR = document.createElement('tr');
       for (var zz = 0; zz < 3; zz++){
         var newTD = document.createElement('td');
-        newTD.textContent = pizza3001[locations[xx]][hours[yy]][zz];
+        var TDtext = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
+        newTD.appendChild(TDtext);
         newTR.appendChild(newTD);
+        // console.log(pizza3001[locations[xx]][hours[yy]]);
       }
-      placeDiv.appendChild(newTable);
+      newTableBody.appendChild(newTR);
     }
+    newTable.appendChild(newTH);
+    newTable.appendChild(newTableBody);
+    div.appendChild(newTable);
   }
 };
 
