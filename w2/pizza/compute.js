@@ -311,7 +311,7 @@ console.log(pizza3001);
 
 //Create a loop the generates data for sales page
 function postData(){
-  var headers = ['Pizzas','Deliveries','Drivers'];
+  var headers = ['Time','Pizzas','Deliveries','Drivers'];
   //get reference for parent element
   for (var xx = 0; xx < locations.length; xx++){
     var div = document.getElementById([locations[xx]]);
@@ -321,6 +321,7 @@ function postData(){
     var newTH = document.createElement('thead');
   // Make <tr> a child of <table>
     var newTRH = document.createElement('tr');
+    //Add table header row
     for (var hh = 0; hh < headers.length; hh++){
       var newTHTR = document.createElement('td');
       var THTRtext = document.createTextNode(headers[hh]);
@@ -331,6 +332,10 @@ function postData(){
     for (var yy = 0; yy < hours.length; yy++){
       //create table row, one for each time
       var newTR = document.createElement('tr');
+      var newTHtime = document.createElement('th');
+      var THtimeText = document.createTextNode(hours[yy].slice(-2) + ':00 ');
+      newTHtime.appendChild(THtimeText);
+      newTR.appendChild(newTHtime);
       for (var zz = 0; zz < 3; zz++){
         var newTD = document.createElement('td');
         var TDtext = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
