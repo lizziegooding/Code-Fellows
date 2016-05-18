@@ -251,10 +251,15 @@ var dDeliveries = {
 var hours = Object.keys(dPizzas.hillsboro);
 console.log(hours);
 
-//Define locations
+//Create function that adds objects to dPizza and dDeliveries based on user input
+
+//create locations variable after dPizza and dDeliveries have received user input
 var locations = Object.keys(dPizzas);
 console.log(locations);
 // console.log(dPizzas['hillsboro']['t09']);
+
+//make sure functions are called only after dPizza and dDeliveries have been updated with user input event listener
+//once all fields are submitted 1) update data objects, 2) update locations field 3) call object constructor, postData and postSummary
 
 //******************************GLOBAL FUNCTIONS***********************************//
 
@@ -363,7 +368,7 @@ function postSummary(){
     //access elements in object pizza3001 and create a text node with them
     var liText = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
     //Append li text to <li> element
-    newLi.appendChild(liText);
+    li.appendChild(liText);
     //Append li to <ul> element in DOM
     summary.appendChild(li);
   }
