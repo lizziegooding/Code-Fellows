@@ -8,9 +8,18 @@
 <body>
   <h1>Pizza 3001 Sales Information</h1>
   <div id = "home"><a href="index.html">Home</a></div>
-  <div id = "quiz"><a href="sales-data.html">Sales Data</a></div>
+  <div id = "sales-data"><a href="sales-data.html">Sales Data</a></div>
   <p id="total"></p>
-
+  <br>
+  <fieldset>
+    <label>New Location Name: <input id="locName" type="text" name="locName" placeholder="Hillsboro"/></label><br>
+    <label>Minimum number of pizzas per hour: <input id="minPizzas" type="text" name="minPizzas"  placeholder="0"/></label><br>
+    <label>Maximum number of pizzas<input id="maxPizzas" type="text" name="maxPizzas"  placeholder="4"/></label><br>
+    <label>Minimum number of deliveries per hour: <input id="minDeliveries" type="text" name="minDeliveries"  placeholder="0"/></label><br>
+    <label>Maximum number of deliveries per hour: <input id="maxDeliveries" type="text" name="maxDeliveries"  placeholder="4"/></label><br>
+    <button id="button">Submit</button>
+  </fieldset>
+  <br>
   <h2>Hillsboro</h2>
   <div id="hillsboro"></div>
   <br>
@@ -33,6 +42,10 @@
 
   <h2>Clackamas</h2>
   <div id="clackamas"></div>
+  <br>
+  <div></div>
+  <br>
+  <div></div>
   <br>
   <ul id="summary">Summary</ul>
   <script src="compute.js" type="text/javascript"></script>

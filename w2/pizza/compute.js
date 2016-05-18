@@ -251,12 +251,57 @@ var dDeliveries = {
 var hours = Object.keys(dPizzas.hillsboro);
 console.log(hours);
 
-//Define locations
+//Create function that adds objects to dPizza and dDeliveries based on user input
+var button = getID('button');
+button.addEventListener('click',writeInput);
+
+function writeInput(){
+  var locName = getID('locName').value;
+  var minPizzas = parseInt(getID('minPizzas').value);
+  var maxPizzas = parseInt(getID('maxPizzas').value);
+  var minDeliveries = parseInt(getID('minDeliveries').value);
+  var maxDeliveries = parseInt(getID('maxDeliveries').value);
+  if (isNaN(minPizzas) || isNaN(maxPizzas) || isNaN(minDeliveries) || isNaN(maxDeliveries)){
+    alert('Your input is invalid. Please be sure to enter a number in the minimum and maximum value fields.');
+    return;
+  }
+  console.log(locName);
+  //Add new location to locations list
+  locations.push(locName);
+  console.log(locations);
+  //create new empty objects within existing pizza and delivery data objects corresponding to new location name
+  dPizzas[locName] = {};
+  dDeliveries[locName] = {};
+  //give every hour the same min and max pizza and delivery values
+  for (var aa = 0; aa < hours.length; aa++){
+    dPizzas[locName][hours[aa]] = [minPizzas, maxPizzas];
+    dDeliveries[locName][hours[aa]] = [minDeliveries, maxDeliveries];
+  }
+  console.table(dPizzas);
+  console.table(dDeliveries);
+  var pizza3002 = new pizzaStore(locations);
+  console.table(pizza3002);
+  postData(pizza3002);
+  postSummary(pizza3002);
+}
+
+//create locations variable, define globally; push to it once user has submitted input
 var locations = Object.keys(dPizzas);
 console.log(locations);
 // console.log(dPizzas['hillsboro']['t09']);
 
+//make sure functions are called only after dPizza and dDeliveries have been updated with user input event listener
+//once all fields are submitted 1 update data objects, 2) update locations field 3) call object constructor, postData and postSummary
+
 //******************************GLOBAL FUNCTIONS***********************************//
+//Create generic function that gets elements from DOM by Id
+function getID(v) {
+  return document.getElementById(v);
+}
+
+// function makeTag(x, y) {
+//   return document.createElement(x).setAttribute('id', y);;
+// }
 
 //Create a function which given two minimum and maximum numbers returns a random number
 function randCalc(minMaxArray){
@@ -295,12 +340,26 @@ var pizza3001 = new pizzaStore(locations);
 console.log(pizza3001);
 
 //Create a loop the generates data for sales page
-function postData(){ //TODO: clean up variable names
+function postData(pStore){
   var headers = ['Time','Pizzas','Deliveries','Drivers'];
   //Get reference for parent div element-- one per location
-  for (var xx = 0; xx < locations.length; xx++){
-    var div = document.getElementById([locations[xx]]);
+  if (getID('hillsboro').firstChild){
+    var tableLocations = [locations[(locations.length) - 1]];
+    console.log(tableLocations);
+    var setDiv = document.getElementsByTagName('div')[locations.length + tableLocations.length];
+      // getID('clackamas').nextSibling;
+      // locations.length + tableLocations - 1
+    setDiv.setAttribute('id', tableLocations[0]);
+  }
+  else {
+    var tableLocations = locations;
+  }
+  for (var xx = 0; xx < tableLocations.length; xx++){
+    var div = getID(tableLocations[xx]);
+    // var div = document.createElement('div').setAttribute('id', tableLocations[xx]);
+    console.log(tableLocations[xx]);
     //create table, table body, and table head elements
+    //if table node already exists
     var table = document.createElement('table');
     var tableHead = document.createElement('thead');
     var tableBody = document.createElement('tbody');
@@ -336,7 +395,8 @@ function postData(){ //TODO: clean up variable names
         //Create table cell
         var cell = document.createElement('td');
         //Create table cell text node; will store pizzas, then deliveries, then drivers, one element from the array per iteration of the loop
-        var cellText = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
+        var cellText = document.createTextNode(pStore[tableLocations[xx]][hours[yy]][zz]);
+        // console.log(cellText);
         //Append cell text to cell
         cell.appendChild(cellText);
         //Append cell to the row
@@ -355,19 +415,26 @@ function postData(){ //TODO: clean up variable names
 };
 
 //function that adds a summary list to the sales page
-function postSummary(){
+function postSummary(pStore){
   //Connect to summary element in DOM (<ul>)
-  var summary = document.getElementById('summary');
-  for (var kk = 0; kk < locations.length; kk++){
+  var summary = getID('summary');
+  if (summary.firstChild.nextSibling){
+    var tableLocations = [locations[(locations.length) - 1]];
+    console.log(tableLocations);
+  }
+  else {
+    var tableLocations = locations;
+  }
+  for (var kk = 0; kk < tableLocations.length; kk++){
     var li = document.createElement('li');
-    //access elements in object pizza3001 and create a text node with them
-    var liText = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
+    //access elements in object and create a text node with them
+    var liText = document.createTextNode('The ' + tableLocations[kk] + ' store sold ' + pStore[tableLocations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pStore[tableLocations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
     //Append li text to <li> element
-    newLi.appendChild(liText);
+    li.appendChild(liText);
     //Append li to <ul> element in DOM
     summary.appendChild(li);
   }
 }
 //Call functions and a write to DOM
-postData();
-postSummary();
+postData(pizza3001);
+postSummary(pizza3001);
