@@ -254,8 +254,7 @@ console.log(hours);
 //Define locations
 var locations = Object.keys(dPizzas);
 console.log(locations);
-console.log(dPizzas['hillsboro']['t09']);
-// var locations = ['hillsboro', 'pearl', 'downtownPDX', 'buckman', 'PDXairport', 'clackamas'];
+// console.log(dPizzas['hillsboro']['t09']);
 
 //******************************GLOBAL FUNCTIONS***********************************//
 
@@ -276,14 +275,6 @@ function hourStats(pizzaArray, deliveryArray){
   return output;
 }
 
-// Object.prototype.storeData = function() {
-//   this.isOn = (! this.isOn);
-//   console.log('isOn = ' + this.isOn);
-// }
-//
-// console.log(hourStats([0,2],[4,5]));
-// console.log(hourStats(dPizzas['hillsboro']['t08'],dDeliveries['hillsboro']['t08']));
-
 //Constructor object that automatically generates random numbers given a location name
 function pizzaStore(places){
   for (var hh = 0; hh < places.length; hh++){
@@ -303,111 +294,80 @@ function pizzaStore(places){
 var pizza3001 = new pizzaStore(locations);
 console.log(pizza3001);
 
-// console.log(hillsboro);
-// console.log(hillsboro.shop['t0'][0]);
-// console.log(hillsboro.shop.t0[1]);
-// console.log(hillsboro.shop.t0[2]);
-//  8:00am 0 pizzas, 0 deliveries -- [ driver not recommended ]
-
 //Create a loop the generates data for sales page
 function postData(){ //TODO: clean up variable names
   var headers = ['Time','Pizzas','Deliveries','Drivers'];
-  //get reference for parent element
+  //Get reference for parent div element-- one per location
   for (var xx = 0; xx < locations.length; xx++){
     var div = document.getElementById([locations[xx]]);
-  //create table and table body element
-    var newTable = document.createElement('table');
-    var newTableBody = document.createElement('tbody');
-    var newTH = document.createElement('thead');
-  // Make <tr> a child of <table>
-    var newTRH = document.createElement('tr');
+    //create table, table body, and table head elements
+    var table = document.createElement('table');
+    var tableHead = document.createElement('thead');
+    var tableBody = document.createElement('tbody');
+    // Make a single table row (<tr>) to hold table header
+    var rowHead = document.createElement('tr');
     //Add table header row
     for (var hh = 0; hh < headers.length; hh++){
-      var newTHTR = document.createElement('td');
-      var THTRtext = document.createTextNode(headers[hh]);
-      newTHTR.appendChild(THTRtext);
-      newTRH.appendChild(newTHTR);
+      //Create new cell (<td>) for table headers
+      var rowHeadCell = document.createElement('td');
+      //Create new text node for table header cell
+      var rowHeadText = document.createTextNode(headers[hh]);
+      //Append header cell text to row header cell
+      rowHeadCell.appendChild(rowHeadText);
+      //Append header cell to row header
+      rowHead.appendChild(rowHeadCell);
     }
-    newTH.appendChild(newTRH);
+    //Append row header to table head
+    tableHead.appendChild(rowHead);
+    //Begin loop to populate table body
     for (var yy = 0; yy < hours.length; yy++){
-      //create table row, one for each time
-      var newTR = document.createElement('tr');
-      var newTHtime = document.createElement('th');
-      var THtimeText = document.createTextNode(hours[yy].slice(-2) + ':00 ');
-      newTHtime.appendChild(THtimeText);
-      newTR.appendChild(newTHtime);
+      //Create table row, one for each hour
+      var bodyRow = document.createElement('tr');
+      //Create column head element, one per each hour
+      var columnHead = document.createElement('th');
+      //Create new text node for column head using the keys from data objects dPizza and dDeliveries
+      var columnHeadText = document.createTextNode(hours[yy].slice(-2) + ':00 ');
+      //Append column head text to column head cell
+      columnHead.appendChild(columnHeadText);
+      //Append column head cell to the given row
+      bodyRow.appendChild(columnHead);
+      //Now that row has he column header we want, loop through to add pizza, deliveries, and drivers cells; limit of 3 in for loop because arrays stored in data objects are length 3
       for (var zz = 0; zz < 3; zz++){
-        var newTD = document.createElement('td');
-        var TDtext = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
-        newTD.appendChild(TDtext);
-        newTR.appendChild(newTD);
-        // console.log(pizza3001[locations[xx]][hours[yy]]);
+        //Create table cell
+        var cell = document.createElement('td');
+        //Create table cell text node; will store pizzas, then deliveries, then drivers, one element from the array per iteration of the loop
+        var cellText = document.createTextNode(pizza3001[locations[xx]][hours[yy]][zz]);
+        //Append cell text to cell
+        cell.appendChild(cellText);
+        //Append cell to the row
+        bodyRow.appendChild(cell);
       }
-      newTableBody.appendChild(newTR);
+      //Append row with column header and three body cells to the table body
+      tableBody.appendChild(bodyRow);
     }
-    newTable.appendChild(newTH);
-    newTable.appendChild(newTableBody);
-    div.appendChild(newTable);
+    //Append table head to table
+    table.appendChild(tableHead);
+    //Append table body to table
+    table.appendChild(tableBody);
+    //Append table to parent/containing div
+    div.appendChild(table);
   }
 };
 
+//function that adds a summary list to the sales page
 function postSummary(){
+  //Connect to summary element in DOM (<ul>)
   var summary = document.getElementById('summary');
   for (var kk = 0; kk < locations.length; kk++){
-    var newLi = document.createElement('li');
-    var newTxt = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / 17) + ' pizzas per hour.');
-    newLi.appendChild(newTxt);
-  // var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
-    summary.appendChild(newLi);
+    var li = document.createElement('li');
+    //access elements in object pizza3001 and create a text node with them
+    var liText = document.createTextNode('The ' + locations[kk] + ' store sold ' + pizza3001[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pizza3001[locations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
+    //Append li text to <li> element
+    newLi.appendChild(liText);
+    //Append li to <ul> element in DOM
+    summary.appendChild(li);
   }
 }
-
+//Call functions and a write to DOM
 postData();
 postSummary();
-
-    // var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
-      // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
-//"The downtown store sold NNNN pizzas last week, the Clackamas store sold MMMM pizzas last week, etc.", and total weekly sales per hour across all stores (i.e., to find a total for the "5pm to 6pm" time slot, add together the number of pizzas sold between 5pm and 6pm for each store, and do this for each time slot).
-
-//
-//     var newP = document.createElement('p');
-//     var newTxt = document.createTextNode(hours[x].slice(-(hours[x].length - 1)) + ':00 ' + hillsboro.shop[hours[x]][0] + ' pizzas, ' + hillsboro.shop[hours[x]][1] + ' deliveries -- [' + hillsboro.shop[hours[x]][2] + ' drivers recommended]');
-//     newP.appendChild(newTxt);
-//     var places = document.getElementsByTagName('h2')[index]; //TODO: need to have ul/li or parent child relationship for this to work; h2 and p do not have this kind of relationship
-//     place.appendChild(newP);
-//       // document.getElementById(x).textContent = hillsboro.shop.dailyPizzas + 'pizzas delivered';
-//   }
-// };
-
-//**********CALL FUNCTIONS, CONNECT TO DOM************//
-
-//Create new location obejects with each of the 6 given locations
-// var hillsboro = new Location('hillsboro');
-// console.log(hillsboro);
-// var pearl = new Location('Pearl');
-// var downtownPDX = new Location('Downtown Portland');
-// var buckman = new Location('Buckman');
-// var PDXairport = new Location('Portland Airport');
-// var clackamas = new Location('Clackamas');
-
-//Calculate weekly pizzas
-// var weeklyPizzas = (hillsboro.shop.dailyPizzas + pearl.shop.dailyPizzas + downtownPDX.shop.dailyPizzas + buckman.shop.dailyPizzas + PDXairport.shop.dailyPizzas + clackamas.shop.dailyPizzas) * 6;
-// console.log(weeklyPizzas);
-
-//Write to the document the total weekly pizzas at all locations
-// var totPizzas = document.getElementById('total');
-// totPizzas.textContent = weeklyPizzas + ' happy Pizza\'s this week!';
-
-//Call postData function with each location
-// postData('hillsboro',0);
-// postData('pearl',1);
-// postData('downtownPDX',2);
-// postData('buckman',3);
-// postData('PDXairport',4);
-// postData('clackamas',5);
-
-//Write to document object literals
-// var basicCrust = document.getElementById('c1');
-// basicCrust.textContent = basicRecipe.crust + ' crust is our most popular';
-// var specialCrust = document.getElementById('c2');
-// specialCrust.textContent = 'But ' + specialRecipe.crust + ' crust is our most special';
