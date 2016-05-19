@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-<title>Pizza 3001 Home Page</title>
-  <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+<title>Village Hearth Bakery</title>
+  <link type="text/css" rel="stylesheet" href="css/skeleton.css"/>
   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <h1>Pizza 3001 Sales Information</h1>
+  <h1>Village Hearth Bakery</h1>
   <div id = "home"><a href="index.html">Home</a></div>
   <div id = "sales-data"><a href="sales-data.html">Sales Data</a></div>
   <p id="total"></p>
   <br>
+  <form>
   <fieldset>
-    <label>New Location Name: <input id="locName" type="text" name="locName" placeholder="Hillsboro"/></label><br>
+    <label>New Location Name: <input id="locName" type="text" name="locName" placeholder="Hillsboro" required="required"/></label><br>
     <label>Minimum number of pizzas per hour: <input id="minPizzas" type="text" name="minPizzas"  placeholder="0"/></label><br>
     <label>Maximum number of pizzas<input id="maxPizzas" type="text" name="maxPizzas"  placeholder="4"/></label><br>
     <label>Minimum number of deliveries per hour: <input id="minDeliveries" type="text" name="minDeliveries"  placeholder="0"/></label><br>
     <label>Maximum number of deliveries per hour: <input id="maxDeliveries" type="text" name="maxDeliveries"  placeholder="4"/></label><br>
-    <button id="button">Submit</button>
+    <input id="button" type="submit">Submit</input>
   </fieldset>
+</form>
   <br>
   <h2>Hillsboro</h2>
   <div id="hillsboro"></div>
