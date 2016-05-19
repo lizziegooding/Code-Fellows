@@ -255,15 +255,16 @@ console.log(hours);
 var button = getID('button');
 button.addEventListener('click',writeInput);
 
-function writeInput(){
-  var locName = getID('locName').value;
+function writeInput(event){
+  event.preventDefault(); // ould have to add form for this to work
+  var locName = getID('locName').value; //validate user didn't leave form blank
   var minPizzas = parseInt(getID('minPizzas').value);
   var maxPizzas = parseInt(getID('maxPizzas').value);
   var minDeliveries = parseInt(getID('minDeliveries').value);
   var maxDeliveries = parseInt(getID('maxDeliveries').value);
-  if (isNaN(minPizzas) || isNaN(maxPizzas) || isNaN(minDeliveries) || isNaN(maxDeliveries)){
+  if (isNaN(minPizzas) || isNaN(maxPizzas) || isNaN(minDeliveries) || isNaN(maxDeliveries) || locName.length === 0){
     alert('Your input is invalid. Please be sure to enter a number in the minimum and maximum value fields.');
-    return;
+    return; //breaks out of function
   }
   console.log(locName);
   //Add new location to locations list
@@ -343,9 +344,11 @@ console.log(pizza3001);
 function postData(pStore){
   var headers = ['Time','Pizzas','Deliveries','Drivers'];
   //Get reference for parent div element-- one per location
+  //global variable set to false originally, goes through once and flips to true
   if (getID('hillsboro').firstChild){
     var tableLocations = [locations[(locations.length) - 1]];
     console.log(tableLocations);
+    //try with a single container div and add all tables to that
     var setDiv = document.getElementsByTagName('div')[locations.length + tableLocations.length];
       // getID('clackamas').nextSibling;
       // locations.length + tableLocations - 1
@@ -368,7 +371,7 @@ function postData(pStore){
     //Add table header row
     for (var hh = 0; hh < headers.length; hh++){
       //Create new cell (<td>) for table headers
-      var rowHeadCell = document.createElement('td');
+      var rowHeadCell = document.createElement('th');
       //Create new text node for table header cell
       var rowHeadText = document.createTextNode(headers[hh]);
       //Append header cell text to row header cell
@@ -385,12 +388,12 @@ function postData(pStore){
       //Create column head element, one per each hour
       var columnHead = document.createElement('th');
       //Create new text node for column head using the keys from data objects dPizza and dDeliveries
-      var columnHeadText = document.createTextNode(hours[yy].slice(-2) + ':00 ');
+      var columnHeadText = document.createTextNode(hours[yy].slice(-2) + ':00');
       //Append column head text to column head cell
       columnHead.appendChild(columnHeadText);
       //Append column head cell to the given row
       bodyRow.appendChild(columnHead);
-      //Now that row has he column header we want, loop through to add pizza, deliveries, and drivers cells; limit of 3 in for loop because arrays stored in data objects are length 3
+      //Now that row has the column header we want, loop through to add pizza, deliveries, and drivers cells; limit of 3 in for loop because arrays stored in data objects are length 3
       for (var zz = 0; zz < 3; zz++){
         //Create table cell
         var cell = document.createElement('td');
