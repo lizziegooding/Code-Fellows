@@ -1,15 +1,73 @@
-* {
-  background-color: rgb(77,77,77);
-  font-family: "Poiret One";
+
+
+/*#caribou {
+  width: 106px;
 }
 
-p {
-  background-color: rgb(224,225,234);
+#coffee {
+  width: 106px;
+}*/
+
+div.columns > img {
+    height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
 }
 
-table, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
-   font-family: sans-serif;
-   padding: 5px;
+#pizza {
+  width: 960px;
 }
+
+/*div {
+  background-color: #555;
+}*/
+
+.grid {
+  display: flex;
+  justify-content: space-around;;
+  /*align-items: baseline;
+  flex-flow: row wrap;
+  align-content: center;*/
+}
+
+h1, h2, div {
+  text-align: center;
+  /*padding: 10px;*/
+  border-radius: 5px;
+}
+
+ul, li {
+  text-align: left;
+}
+
+a {
+  display: inline;
+  text-decoration: none;
+}
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: blue;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+/*#head {
+  background-color: purple;
+}*/
+
+/*#sales {
+  display: inline;
+}*/

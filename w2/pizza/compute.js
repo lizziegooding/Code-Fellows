@@ -252,8 +252,8 @@ var hours = Object.keys(dPizzas.hillsboro);
 console.log(hours);
 
 //Create function that adds objects to dPizza and dDeliveries based on user input
-var button = getID('button');
-button.addEventListener('click',writeInput);
+// var button = getID('button');
+// button.addEventListener('click',writeInput);
 
 function writeInput(event){
   event.preventDefault(); // ould have to add form for this to work
@@ -290,7 +290,8 @@ function writeInput(event){
 var locations = Object.keys(dPizzas);
 console.log(locations);
 // console.log(dPizzas['hillsboro']['t09']);
-
+var pizza3001 = new pizzaStore(locations);
+console.log(pizza3001);
 //make sure functions are called only after dPizza and dDeliveries have been updated with user input event listener
 //once all fields are submitted 1 update data objects, 2) update locations field 3) call object constructor, postData and postSummary
 
@@ -337,32 +338,37 @@ function pizzaStore(places){
   }
 };
 
-var pizza3001 = new pizzaStore(locations);
-console.log(pizza3001);
-
 //Create a loop the generates data for sales page
+var headers = ['Time','Pizzas','Deliveries','Drivers'];
+var parentDiv = getID('parentDiv');
 function postData(pStore){
-  var headers = ['Time','Pizzas','Deliveries','Drivers'];
+  parentDiv.innerHTML = '';
   //Get reference for parent div element-- one per location
   //global variable set to false originally, goes through once and flips to true
-  if (getID('hillsboro').firstChild){
-    var tableLocations = [locations[(locations.length) - 1]];
-    console.log(tableLocations);
-    //try with a single container div and add all tables to that
-    var setDiv = document.getElementsByTagName('div')[locations.length + tableLocations.length];
-      // getID('clackamas').nextSibling;
-      // locations.length + tableLocations - 1
-    setDiv.setAttribute('id', tableLocations[0]);
-  }
-  else {
-    var tableLocations = locations;
-  }
-  for (var xx = 0; xx < tableLocations.length; xx++){
-    var div = getID(tableLocations[xx]);
+  // if (getID('hillsboro').firstChild){
+  //   var tableLocations = [locations[(locations.length) - 1]];
+  //   console.log(tableLocations);
+  //   //try with a single container div and add all tables to that
+  //   var setDiv = document.getElementsByTagName('div')[locations.length + tableLocations.length];
+  //     // getID('clackamas').nextSibling;
+  //     // locations.length + tableLocations - 1
+  //   setDiv.setAttribute('id', tableLocations[0]);
+  // }
+  // else {
+  //   var tableLocations = locations;
+  // }
+  for (var xx = 0; xx < locations.length; xx++){
+    //Add h2 with place name
+    var h2 = document.createElement('h2');
+    var h2Text = document.createTextNode(locations[xx]);
+    h2.appendChild(h2Text);
+    parentDiv.appendChild(h2);
+    // var div = getID(tableLocations[xx]);
     // var div = document.createElement('div').setAttribute('id', tableLocations[xx]);
-    console.log(tableLocations[xx]);
+    console.log(locations[xx]);
     //create table, table body, and table head elements
     //if table node already exists
+    var br = document.createElement('br');
     var table = document.createElement('table');
     var tableHead = document.createElement('thead');
     var tableBody = document.createElement('tbody');
@@ -398,7 +404,7 @@ function postData(pStore){
         //Create table cell
         var cell = document.createElement('td');
         //Create table cell text node; will store pizzas, then deliveries, then drivers, one element from the array per iteration of the loop
-        var cellText = document.createTextNode(pStore[tableLocations[xx]][hours[yy]][zz]);
+        var cellText = document.createTextNode(pStore[locations[xx]][hours[yy]][zz]);
         // console.log(cellText);
         //Append cell text to cell
         cell.appendChild(cellText);
@@ -413,25 +419,28 @@ function postData(pStore){
     //Append table body to table
     table.appendChild(tableBody);
     //Append table to parent/containing div
-    div.appendChild(table);
+    parentDiv.appendChild(table);
+    //Append break to parent/containing div
+    parentDiv.appendChild(br);
   }
 };
 
-//function that adds a summary list to the sales page
+// function that adds a summary list to the sales page
+var summary = getID('summary');
 function postSummary(pStore){
+  summary.innerHTML = '';
   //Connect to summary element in DOM (<ul>)
-  var summary = getID('summary');
-  if (summary.firstChild.nextSibling){
-    var tableLocations = [locations[(locations.length) - 1]];
-    console.log(tableLocations);
-  }
-  else {
-    var tableLocations = locations;
-  }
-  for (var kk = 0; kk < tableLocations.length; kk++){
+  // if (summary.firstChild.nextSibling){
+  //   var tableLocations = [locations[(locations.length) - 1]];
+  //   console.log(tableLocations);
+  // }
+  // else {
+  //   var tableLocations = locations;
+  // }
+  for (var kk = 0; kk < locations.length; kk++){
     var li = document.createElement('li');
     //access elements in object and create a text node with them
-    var liText = document.createTextNode('The ' + tableLocations[kk] + ' store sold ' + pStore[tableLocations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pStore[tableLocations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
+    var liText = document.createTextNode('The ' + locations[kk] + ' store sold ' + pStore[locations[kk]]['dailyPizzas'] * 6 + ' pizzas last week, averaging ' + Math.round(pStore[locations[kk]]['dailyPizzas'] / hours.length) + ' pizzas per hour.');
     //Append li text to <li> element
     li.appendChild(liText);
     //Append li to <ul> element in DOM
@@ -439,5 +448,5 @@ function postSummary(pStore){
   }
 }
 //Call functions and a write to DOM
-postData(pizza3001);
-postSummary(pizza3001);
+// postData(pizza3001);
+// postSummary(pizza3001);

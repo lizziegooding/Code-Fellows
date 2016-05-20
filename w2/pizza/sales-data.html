@@ -3,7 +3,9 @@
 <head>
 <title>Village Hearth Bakery</title>
   <link type="text/css" rel="stylesheet" href="css/skeleton.css"/>
-  <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  <!-- <script src="https://use.typekit.net/uxn6xyu.js"></script> -->
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'> -->
 </head>
 <body>
   <h1>Village Hearth Bakery</h1>
@@ -18,11 +20,12 @@
     <label>Maximum number of pizzas<input id="maxPizzas" type="text" name="maxPizzas"  placeholder="4"/></label><br>
     <label>Minimum number of deliveries per hour: <input id="minDeliveries" type="text" name="minDeliveries"  placeholder="0"/></label><br>
     <label>Maximum number of deliveries per hour: <input id="maxDeliveries" type="text" name="maxDeliveries"  placeholder="4"/></label><br>
-    <input id="button" type="submit">Submit</input>
+    <input id="button" type="submit"></input>
   </fieldset>
 </form>
   <br>
-  <h2>Hillsboro</h2>
+  <div id="parentDiv">
+  <!-- <h2>Hillsboro</h2>
   <div id="hillsboro"></div>
   <br>
 
@@ -48,8 +51,10 @@
   <div></div>
   <br>
   <div></div>
-  <br>
-  <ul id="summary">Summary</ul>
+  <br> -->
+</div>
+  <h2>Summary</h2>
+  <ul id="summary"></ul>
   <script src="compute.js" type="text/javascript"></script>
 </body>
 
