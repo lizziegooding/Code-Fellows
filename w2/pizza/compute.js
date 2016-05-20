@@ -343,20 +343,6 @@ var headers = ['Time','Pizzas','Deliveries','Drivers'];
 var parentDiv = getID('parentDiv');
 function postData(pStore){
   parentDiv.innerHTML = '';
-  //Get reference for parent div element-- one per location
-  //global variable set to false originally, goes through once and flips to true
-  // if (getID('hillsboro').firstChild){
-  //   var tableLocations = [locations[(locations.length) - 1]];
-  //   console.log(tableLocations);
-  //   //try with a single container div and add all tables to that
-  //   var setDiv = document.getElementsByTagName('div')[locations.length + tableLocations.length];
-  //     // getID('clackamas').nextSibling;
-  //     // locations.length + tableLocations - 1
-  //   setDiv.setAttribute('id', tableLocations[0]);
-  // }
-  // else {
-  //   var tableLocations = locations;
-  // }
   for (var xx = 0; xx < locations.length; xx++){
     //Add h2 with place name
     var h2 = document.createElement('h2');
@@ -370,6 +356,7 @@ function postData(pStore){
     //if table node already exists
     var br = document.createElement('br');
     var table = document.createElement('table');
+    table.setAttribute('class', 'u-full-width');
     var tableHead = document.createElement('thead');
     var tableBody = document.createElement('tbody');
     // Make a single table row (<tr>) to hold table header

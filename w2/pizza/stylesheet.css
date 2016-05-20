@@ -15,6 +15,10 @@ div.columns > img {
     max-height: 300px;
 }
 
+label {
+  text-align: left;
+}
+
 #pizza {
   width: 960px;
 }
@@ -36,6 +40,10 @@ div.columns > img {
 .row {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+form fieldset div.row {
+  margin: 20px;
 }
 
 h1, h2, div {
@@ -75,6 +83,19 @@ a:active {
 #head {
   font-size: 80px;
   margin-top: 80px;
+}
+
+input {
+  display: inline;
+}
+
+ul, li {
+  margin-left: 100px;
+  margin-bottom: 100px;
+}
+
+p {
+  color: rgb(150,150,150);
 }
 
 /*#sales {
