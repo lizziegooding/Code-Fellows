@@ -252,8 +252,8 @@ var hours = Object.keys(dPizzas.hillsboro);
 console.log(hours);
 
 //Create function that adds objects to dPizza and dDeliveries based on user input
-// var button = getID('button');
-// button.addEventListener('click',writeInput);
+var button = getID('button');
+button.addEventListener('click',writeInput);
 
 function writeInput(event){
   event.preventDefault(); // ould have to add form for this to work
@@ -448,5 +448,5 @@ function postSummary(pStore){
   }
 }
 //Call functions and a write to DOM
-// postData(pizza3001);
-// postSummary(pizza3001);
+postData(pizza3001);
+postSummary(pizza3001);

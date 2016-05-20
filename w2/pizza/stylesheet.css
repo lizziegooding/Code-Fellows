@@ -25,10 +25,17 @@ div.columns > img {
 
 .grid {
   display: flex;
-  justify-content: space-around;;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
   /*align-items: baseline;
   flex-flow: row wrap;
   align-content: center;*/
+}
+
+.row {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 h1, h2, div {
@@ -44,6 +51,7 @@ ul, li {
 a {
   display: inline;
   text-decoration: none;
+  font-size: 20px;
 }
 /* unvisited link */
 a:link {
@@ -64,9 +72,10 @@ a:hover {
 a:active {
     color: black;
 }
-/*#head {
-  background-color: purple;
-}*/
+#head {
+  font-size: 80px;
+  margin-top: 80px;
+}
 
 /*#sales {
   display: inline;
