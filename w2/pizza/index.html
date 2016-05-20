@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-<title>Village Hearth Bakery</title>
+<title>Vergennes Laundry</title>
+  <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+  <!-- Skeleton links to Google web font Raleway automatically -->
   <link type="text/css" rel="stylesheet" href="css/skeleton.css"/>
   <link type="text/css" rel="stylesheet" href="css/normalize.css"/>
-  <!-- <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'> -->
 </head>
 <body>
-  <h1>Village Hearth Bakery</h1>
-  <div id ="home"><a href="index.html">Home</a></div>
-  <div id ="quiz"><a href="sales-data.html">Sales Data</a></div>
-  <!-- Shows at least one image of a pizza.
-Lists store locations and hours (e.g., "8:00am to 2:00am, Tue - Sun, closed Mon")
-Eye-catching line of text that says "NN happy Pizza Odysseys this week!", where NN is the total number of pizzas sold that week, and the total is geneated by the same code that generates the total shown on the data page.
-Color palette that provides a futuristic theme/visual web page appearance
-Custom font(s) from Google Fonts -->
-  <p id="total"></p>
-  <img src = "http://connecticutmag-images.dashdigital.com/Pizza%202%20.jpg"/>
-  <ul>Locations</ul>
-    <li>Hillsboro</li>
-    <li>Pearl</li>
-    <li>Downtown Portland</li>
-    <li>Buckman</li>
-    <li>Portland Aiport</li>
-    <li>Clackamas</li>
-  </ul>
-  <ul>Hours</ul>
-    <li>Tuesday through Sunday: 8am - 2am</li>
-    <li>Monday: closed</li>
-  </ul>
-  <p id="c1"></p>
-  <p id="c2"></p>
-  <script src="compute.js" type="text/javascript"></script>
+  <div id="banner" class="container">
+
+  <h1 id="head">Vergennes Laundry</h1>
+
+  <div class="row">
+    <div class="six columns"><a href="index.html">Home</a></div>
+    <div class="six columns"><a href="sales-data.html">Sales Data</a></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row"><img id="pizza" src="images/pizza.jpg"/></div>
+<div id="info">
+  <h5>Locations</h5>
+  <h6>Hillsboro |   Pearl   |   Downtown Portland   |   Buckman   |   Portland Aiport   |   Clackamas</h6>
+  <div id="hours"></div>
+  <h5>Hours</h5>
+    <h6>Tuesday-Sunday: 8am - 2am</h6>
+    <h6>Monday: Closed</h6>
+  </div>
+
+  <div class="grid">
+    <div class="four columns"><img id="caribou" src = "images/caribou.jpg"/></div>
+    <div class="four columns"><img id="store" src = "images/store.jpg"/></div>
+    <div class="four columns"><img id="coffee" src = "images/coffee.jpg"/></div>
+  </div>
+
+  <div class="grid">
+    <div class="four columns"><img id="scone" src = "images/scone.jpg"/></div>
+    <div class="four columns"><img id="flowers" src = "images/flowers.jpg"/></div>
+    <div class="four columns"><img id="chocolates" src = "images/chocolates.jpg"/></div>
+</div>
+
+  <div id="credits"><p>Images from #vergenneslaundry Instagram and the New York Times<span>&copy;Lizzie Gooding 2016.</span></p></div>
+
+</div>
 </body>
 
 </html>

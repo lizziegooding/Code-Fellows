@@ -1,15 +1,113 @@
-* {
-  background-color: rgb(77,77,77);
-  font-family: "Poiret One";
+div.columns > img {
+    height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
 }
 
-p {
-  background-color: rgb(224,225,234);
+label {
+  text-align: left;
 }
 
-table, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
-   font-family: sans-serif;
-   padding: 5px;
+#pizza {
+  width: 960px;
+}
+
+#banner{
+  background-color: rgba(238,194,110,0.7);
+  padding: 10px;
+}
+
+#info {
+  background-color: rgba(187,70,38,0.7);
+  color: white;
+  padding: 10px;
+}
+
+#credits {
+  background-color: rgba(56,38,34,0.9);
+  color: white;
+  margin: 10px;
+}
+
+#hours{
+  border-top-color: white;
+  border-top-width: 2px;
+  border-top-style: solid;
+  padding: 10px;
+  border-radius: 0px;
+  width: 400px;
+  margin: auto;
+  position: relative;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.row {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+form fieldset div.row {
+  margin: 20px;
+}
+
+h1, h2, div {
+  text-align: center;
+  border-radius: 5px;
+}
+
+h5 {
+  padding: 5px;
+}
+
+ul, li {
+  text-align: left;
+}
+
+a {
+  display: inline;
+  text-decoration: none;
+  font-size: 20px;
+}
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: blue;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+#head {
+  font-size: 80px;
+  margin-top: 80px;
+}
+
+input {
+  display: inline;
+}
+
+ul, li {
+  margin-left: 100px;
+  margin-bottom: 100px;
+}
+
+span {
+  display: block;
 }
