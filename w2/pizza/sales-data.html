@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<title>Vergennes Laundry</title>
+<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+<!-- Skeleton links to Google web font Raleway automatically -->
+<link type="text/css" rel="stylesheet" href="css/skeleton.css"/>
+<link type="text/css" rel="stylesheet" href="css/normalize.css"/>
+</head>
+<body>
+  <div id="banner" class="container">
+    <h1 id="head">Vergennes Laundry</h1>
+    <div class="row">
+      <div class="six columns"><a href="index.html">Home</a></div>
+      <div class="six columns"><a href="sales-data.html">Sales Data</a></div>
+    </div>
+  </div>
+  <!-- <p id="total"></p> -->
+  <br>
+  <div class="container">
+  <form>
+  <fieldset>
+    <div class="row">
+      <!-- <div class="six columns"> -->
+      <label>New Location Name:</label>
+      <input id="locName" class="u-full-width" type="text" name="locName" placeholder="Hillsboro" required="required"/>
+    <!-- </div> -->
+  </div>
+  <div class="row">
+    <div class="three columns">
+    <label>Minimum pizzas:</label>
+      <input id="minPizzas" class="u-full-width" type="text" name="minPizzas" placeholder="0"/>
+  </div>
+  <div class="three columns">
+    <label>Maximum pizzas:</label>
+      <input id="maxPizzas" class="u-full-width" type="text" name="maxPizzas"  placeholder="4"/>
+    </div>
+  <div class="three columns">
+    <label>Minimum deliveries:</label>
+      <input id="minDeliveries" type="text" name="minDeliveries"  placeholder="0">
+  </div>
+    <div class="three columns">
+    <label>Maximum deliveries:</label>
+      <input id="maxDeliveries" type="text" name="maxDeliveries"  placeholder="4">
+    </div>
+  </div>
+    <input id="button" class="button-primary" type="submit">
+  </fieldset>
+</form>
+  <br>
+  <br>
+  <br>
+  </div>
+  <div class="container" id="parentDiv">
+</div>
+<div class="container">
+  <h2>Summary</h2>
+  <ul id="summary"></ul>
+    <div id="credits"><p>Images from #vergenneslaundry Instagram and the New York Times<span>&copy;Lizzie Gooding 2016.</span></p></div>
+</div>
+  <script src="compute.js" type="text/javascript"></script>
+</body>
+
+</html>
