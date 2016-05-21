@@ -1,0 +1,126 @@
+* {
+  font-family: "Book Antiqua", serif;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+#head {
+  font-family: "Brush Script MT", cursive;
+  font-size: 40px;
+  margin-bottom: 0px;
+  /*margin-left: 10px;*/
+}
+
+#choc {
+  margin-bottom: 0px;
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+#mainImg {
+  margin: auto;
+  width: 960px;
+}
+span p {
+  margin-top: 0px;
+  /*margin-left: 10px;*/
+  font-size: 15px;
+}
+h1 {
+  font-family: "Impact", sans-serif;
+}
+
+.notes {
+  font-family: Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: gray;
+}
+
+#button {
+  font-family: Helvetica, sans-serif;
+  color: white;
+  text-transform: uppercase;
+  background-color: rgb(185,113,91);
+  width: 180px;
+  heigh: 60px;
+  padding: 20px;
+  text-align: center;
+  margin-top: -30px;
+}
+
+span {
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.right {
+  margin-top: 40px;
+  margin-right: 0px
+  /*float: right;*/
+}
+
+/*From Code pen available here: https://codepen.io/ibrahimjabbari/pen/ozinB*/
+hr.style11 {
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+  margin-bottom: 50px;
+}
+
+#recipe p {
+  text-indent: 30px;
+}
+
+#list {
+  background-image: url("images/list-bg.png");
+  height: 305px;
+  justify-content: space-around;
+}
+
+ul{
+  margin-top: 35px;
+  width: 100%;
+}
+li {
+  font-family: "Bradley Hand", "Comic Sans";
+  font-size: 25px;
+  /*line-height: 130%;*/
+  margin-left: 30px;
+  /*margin-top: 25px;*/
+  list-style-image: url('http://bit.ly/qunMkL');
+  list-style-type: circle;
+}
+
+.footer {
+  margin: auto;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  color: gray;
+  padding: 10px;
+}
+
+hr.style1{
+	border-top: 1px solid rgb(180,180,180);
+  position: relative;
+  top: 30px;
+  z-index: -1;
+}
