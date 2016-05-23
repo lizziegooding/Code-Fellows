@@ -53,7 +53,7 @@ function getRand(){
   return Math.floor(Math.random() * images.length);
 }
 
-//Add event listener for each image
+//Add event listener for each image, image text, and button
 var img1 = document.getElementById('img1');
 var name1 = document.getElementById('name1');
 img1.addEventListener('click',changeImage1);
@@ -65,6 +65,12 @@ img2.addEventListener('click',changeImage2);
 var img3 = document.getElementById('img3');
 var name3 = document.getElementById('name3');
 img3.addEventListener('click',changeImage3);
+
+var results = document.getElementById('results');
+results.addEventListener('click',showResults);
+var tryAgain = document.getElementById('tryAgain');
+// tryAgain.addEventListener('click',guessAgain);
+var buttons = document.getElementById('buttons');
 
 //Call show image the first time (without event) to populate website with random image
 showImage1(getRand());
@@ -78,6 +84,7 @@ function changeImage1(){
   images[currentIndex1].incrementClicks();
   console.log(currentIndex1 + ' was clicked ' + images[currentIndex1].clicks + ' times');
   totClicks++;
+  click16(totClicks);
   showImage1(getRand());
 }
 
@@ -100,6 +107,7 @@ function changeImage2(){
   images[currentIndex2].incrementClicks();
   console.log(currentIndex2 + ' was clicked ' + images[currentIndex2].clicks + ' times');
   totClicks++;
+  click16(totClicks);
   showImage2(getRand());
 }
 
@@ -122,6 +130,7 @@ function changeImage3(){
   images[currentIndex3].incrementClicks();
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
   totClicks++;
+  click16(totClicks);
   showImage3(getRand());
 }
 
@@ -135,4 +144,16 @@ function showImage3(index){
   //Increment shown property
   images[index].incrementShown();
   console.log(index + ' was shown ' + images[index].shown + ' times');
+}
+
+function click16(clicks){
+  if (clicks === 16){
+    results.style.visibility = 'visible';
+    tryAgain.style.visibility = 'visible';
+  }
+}
+
+function showResults(){
+  results.style.visibility = 'hidden';
+  tryAgain.style.visibility = 'hidden';
 }

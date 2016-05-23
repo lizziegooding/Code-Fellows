@@ -15,3 +15,7 @@ span {
 p {
   text-align: center;
 }
+
+button {
+  visibility: hidden;
+}
