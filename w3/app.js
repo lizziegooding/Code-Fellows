@@ -8,17 +8,31 @@ var img2 = document.getElementById('img2');
 img2.addEventListener('click',changeImage2);
 
 //Array of image names
-var images = ['chocolates.jpg', 'coffee.jpg', 'flowers.jpg', 'scone.jpg'];
+var images = ['chocolates.jpg',
+              'coffee.jpg',
+              'flowers.jpg',
+              'scone.jpg',
+              'bread.jpg',
+              'caribou.jpg',
+              'cookie.jpg',
+              'grapefruit.jpg',
+              'jam.jpg',
+              'oats.jpg',
+              'oven.jpg',
+              'picnic.jpg',
+              'store.jpg',
+              'strawberry.jpg',
+              'toast.jpg'];
 
 function changeImage1(){
-  //Generate randome number between 0 and length of images array - 1
+  //Generate random number between 0 and length of images array
   var index = Math.floor(Math.random() * images.length);
   //Replace shown image
   img1.setAttribute('src', 'images/' + images[index]);
 }
 
 function changeImage2(){
-  //Generate randome number between 0 and length of images array - 1
+  //Generate random number between 0 and length of images array
   var index = Math.floor(Math.random() * images.length);
   //Replace shown image
   img2.setAttribute('src', 'images/' + images[index]);
