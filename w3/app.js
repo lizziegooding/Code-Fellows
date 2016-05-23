@@ -158,9 +158,14 @@ function click16(clicks){
 function showResults(){
   results.style.visibility = 'hidden';
   tryAgain.style.visibility = 'hidden';
+  chart.textContent = 'Number of clicks';
   for (var yy = 0; yy < images.length; yy++){
     var div = document.createElement('div');
-    var label = document.createTextNode(images[yy].iName + ' (' + Math.round((images[yy].clicks / 16) * 100) + '%)');
+    var percent = Math.round((images[yy].clicks / images[yy].shown) * 100);
+    if (isNaN(percent)){
+      percent = 0;
+    }
+    var label = document.createTextNode(images[yy].iName + ' (' + percent + '%)');
     // div.setAttribute('id', images[yy].iName);
     div.setAttribute('class', 'bar');
     div.style.width = (images[yy].clicks * 60) + 'px';
@@ -168,6 +173,5 @@ function showResults(){
     div.appendChild(label);
     chart.appendChild(div);
   }
-
   refresh.style.visibility = 'visible';
 }
