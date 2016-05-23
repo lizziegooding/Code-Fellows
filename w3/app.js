@@ -22,6 +22,7 @@ images = [];
 
 //Construct objects using images array, push to new object array
 function ImgObj(src) {
+  this.iName = src.split('.')[0];
   this.src = 'images/' + src;
   this.clicks = 0;
   this.shown = 0;
@@ -47,20 +48,30 @@ var currentIndex2 = 0;
 var currentIndex3 = 0;
 var totClicks = 0;
 
+// return a random integer between 0 and images.length - 1
+function getRand(){
+  return Math.floor(Math.random() * images.length);
+}
+
 //Add event listener for each image
 var img1 = document.getElementById('img1');
+var name1 = document.getElementById('name1');
 img1.addEventListener('click',changeImage1);
 
-// var img2 = document.getElementById('img2');
-// img2.addEventListener('click',changeImage2);
-//
-// var img3 = document.getElementById('img3');
-// img3.addEventListener('click',changeImage3);
+var img2 = document.getElementById('img2');
+var name2 = document.getElementById('name2');
+img2.addEventListener('click',changeImage2);
 
-//Show new image; given an index show that image in the DOM
-//call random int using show image to show a random image every time
-//
+var img3 = document.getElementById('img3');
+var name3 = document.getElementById('name3');
+img3.addEventListener('click',changeImage3);
 
+//Call show image the first time (without event) to populate website with random image
+showImage1(getRand());
+showImage2(getRand());
+showImage3(getRand());
+
+//Listen for click event, increment when clicked
 function changeImage1(){
   console.log('CLICK');
   //Increment shown property
@@ -70,20 +81,58 @@ function changeImage1(){
   showImage1(getRand());
 }
 
+//Display new image, increment that it was shown
 function showImage1(index){
   //Store index of current image
   currentIndex1 = index;
   //Display current image
   img1.setAttribute('src', images[index].src);
+  name1.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
   console.log(index + ' was shown ' + images[index].shown + ' times');
 }
 
-// return a random integer between 0 and images.length - 1
-function getRand(){
-  return Math.floor(Math.random() * images.length);
+//Listen for click event, increment when clicked
+function changeImage2(){
+  console.log('CLICK');
+  //Increment shown property
+  images[currentIndex2].incrementClicks();
+  console.log(currentIndex2 + ' was clicked ' + images[currentIndex2].clicks + ' times');
+  totClicks++;
+  showImage2(getRand());
 }
 
-//Call show image the first time (without event) to populate website with random image
-showImage1(getRand());
+//Display new image, increment that it was shown
+function showImage2(index){
+  //Store index of current image
+  currentIndex2 = index;
+  //Display current image
+  img2.setAttribute('src', images[index].src);
+  name2.textContent = images[index].iName;
+  //Increment shown property
+  images[index].incrementShown();
+  console.log(index + ' was shown ' + images[index].shown + ' times');
+}
+
+//Listen for click event, increment when clicked
+function changeImage3(){
+  console.log('CLICK');
+  //Increment shown property
+  images[currentIndex3].incrementClicks();
+  console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
+  totClicks++;
+  showImage3(getRand());
+}
+
+//Display new image, increment that it was shown
+function showImage3(index){
+  //Store index of current image
+  currentIndex3 = index;
+  //Display current image
+  img3.setAttribute('src', images[index].src);
+  name3.textContent = images[index].iName;
+  //Increment shown property
+  images[index].incrementShown();
+  console.log(index + ' was shown ' + images[index].shown + ' times');
+}
