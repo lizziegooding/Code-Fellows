@@ -19,3 +19,18 @@ p {
 button {
   visibility: hidden;
 }
+
+.bar {
+  height: 20px;
+  /*background-color: rgb(187,70,38);
+  border: 1px solid white;
+  text-align: right;*/
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: black;
+  white-space: nowrap;
+  padding-top: 10px;
+}

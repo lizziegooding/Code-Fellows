@@ -35,7 +35,7 @@ function ImgObj(src) {
 }
 
 //Loop through all file names, construct image object, push to images array
-for (xx = 0; xx < imageNames.length; xx++){
+for (var xx = 0; xx < imageNames.length; xx++){
   var img = new ImgObj(imageNames[xx]);
   images.push(img);
 }
@@ -69,8 +69,10 @@ img3.addEventListener('click',changeImage3);
 var results = document.getElementById('results');
 results.addEventListener('click',showResults);
 var tryAgain = document.getElementById('tryAgain');
+var chart = document.getElementById('chart');
+var refresh = document.getElementById('refresh');
+refresh.addEventListener('click',function (){ window.location.reload(false);});
 // tryAgain.addEventListener('click',guessAgain);
-var buttons = document.getElementById('buttons');
 
 //Call show image the first time (without event) to populate website with random image
 showImage1(getRand());
@@ -156,4 +158,16 @@ function click16(clicks){
 function showResults(){
   results.style.visibility = 'hidden';
   tryAgain.style.visibility = 'hidden';
+  for (var yy = 0; yy < images.length; yy++){
+    var div = document.createElement('div');
+    var label = document.createTextNode(images[yy].iName + ' (' + Math.round((images[yy].clicks / 16) * 100) + '%)');
+    // div.setAttribute('id', images[yy].iName);
+    div.setAttribute('class', 'bar');
+    div.style.width = (images[yy].clicks * 60) + 'px';
+    // div.style['padding-left'] = images[yy].iName.length + 'px';
+    div.appendChild(label);
+    chart.appendChild(div);
+  }
+
+  refresh.style.visibility = 'visible';
 }
