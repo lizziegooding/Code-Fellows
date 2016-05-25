@@ -147,8 +147,8 @@ if (!ri3) { //if app hasn't run yet...
 // }
 showImage3(ri3);
 
-console.log('images is currently ' + images.length + ' elements long');
-console.log('clicks so far: ' + totClicks);
+// console.log('images is currently ' + images.length + ' elements long');
+// console.log('clicks so far: ' + totClicks);
 
 //Listen for click event, increment when clicked
 function changeImage1(){
@@ -250,14 +250,17 @@ function showImage3(index){
 }
 
 function click16(clicks){
-  if (clicks === 16){
+  console.log('check number clicks');
+  if (((clicks / 8) + 1) % 3 === 0 && clicks > 0){
+    console.log('There have been 16 clicks');
     results.style.visibility = 'visible';
     moreGuesses.style.visibility = 'visible';
     img1.removeEventListener('click',changeImage1);
     img2.removeEventListener('click',changeImage2);
     img3.removeEventListener('click',changeImage3);
   }
-  else if (clicks === 24){
+  else if ((clicks / 8) % 3 === 0 && clicks > 0){
+    console.log('There have been 24 clicks');
     showResults();
     img1.removeEventListener('click',changeImage1);
     img2.removeEventListener('click',changeImage2);
