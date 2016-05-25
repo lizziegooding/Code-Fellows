@@ -1,5 +1,3 @@
-// Write a callback function and add it as a 'click' event listener on each image. The callback should change the image file that is rendered inside the <img> element. I.e., when the user clicks on an image, the image changes to a different image.
-
 //Array of image names
 var imageNames = ['chocolates.jpg',
               'coffee.jpg',
@@ -18,7 +16,12 @@ var imageNames = ['chocolates.jpg',
               'toast.jpg'];
 
 //Create empty array to hold image objects
-images = [];
+var images = [];
+//Initialize variables to hold index of what's being shown
+var currentIndex1 = 0;
+var currentIndex2 = 0;
+var currentIndex3 = 0;
+var totClicks = 0;
 
 //Construct objects using images array, push to new object array
 function ImgObj(src) {
@@ -34,23 +37,9 @@ function ImgObj(src) {
   };
 }
 
-//Loop through all file names, construct image object, push to images array
-for (var xx = 0; xx < imageNames.length; xx++){
-  var img = new ImgObj(imageNames[xx]);
-  images.push(img);
-}
-
-console.log(images);
-
-//Initialize variables to hold index of what's being shown
-var currentIndex1 = 0;
-var currentIndex2 = 0;
-var currentIndex3 = 0;
-var totClicks = 0;
-
 // return a random integer between 0 and images.length - 1
 function getRand(){
-  return Math.floor(Math.random() * images.length);
+  return Math.floor(Math.random() * imageNames.length);
 }
 
 //Add event listener for each image, image text, and button
@@ -66,38 +55,62 @@ var img3 = document.getElementById('img3');
 var name3 = document.getElementById('name3');
 img3.addEventListener('click',changeImage3);
 
+//Show charts
 var results = document.getElementById('results');
 results.addEventListener('click',showResults);
+//Canvas 1 is for absolute values
 var canvas1 = document.getElementById('canvas1');
+//Canvas 2 is for percentages
 var canvas2 = document.getElementById('canvas2');
 
+//Give user 8 more votes
 var moreGuesses = document.getElementById('moreGuesses');
 moreGuesses.addEventListener('click',guessAgain);
 
+//Start proccess again
 var refresh = document.getElementById('refresh');
 refresh.addEventListener('click',function (){ window.location.reload(false);});
 
-//Call show image the first time (without event) to populate website with random image. Sore that index in local storage
+//Call show image the first time (without event) to populate website with random image. Store that index in local storage
 var ri1 = localStorage.currentIndex1;
-if (ri1 = false) {
+if (!ri1) { //if app hasn't run yet...
+  console.log('first time constructing images array');
   ri1 = getRand();
+  //Loop through all file names, construct image object, push to images array
+  for (var xx = 0; xx < imageNames.length; xx++){
+    var img = new ImgObj(imageNames[xx]);
+    images.push(img);
+  }
 }
+else {
+  console.log('getting values from localStorage');
+  var imagesBack = JSON.parse(localStorage.images);
+  //Loop through all file names, construct image object, push to images array
+  for (var ii = 0; ii < imageNames.length; ii++){
+    var img = new ImgObj(imageNames[ii]);
+    img.clicks = imagesBack[ii].clicks;
+    img.shown = imagesBack[ii].shown;
+    console.log(img);
+    images.push(img);
+  }
+}
+console.log('current state: ' + images);
 showImage1(ri1);
 
-var ri2 = localStorage.currentIndex2;
-if (ri2 = false) {
-  ri2 = getRand();
-}
-showImage2(ri2);
+// var ri2 = localStorage.currentIndex2;
+// if (ri2 = false) {
+//   ri2 = getRand();
+// }
+// showImage2(ri2);
+//
+// var ri3 = localStorage.currentIndex3;
+// if (ri3 = false) {
+//   ri3 = getRand();
+// }
+// showImage3(ri3);
 
-var ri3 = localStorage.currentIndex3;
-if (ri3 = false) {
-  ri3 = getRand();
-}
-showImage3(ri3);
-
-// showImage2(getRand());
-// showImage3(getRand());
+      // showImage2(getRand());
+      // showImage3(getRand());
 
 //Listen for click event, increment when clicked
 function changeImage1(){
@@ -105,9 +118,16 @@ function changeImage1(){
   //Increment shown property
   images[currentIndex1].incrementClicks();
   console.log(currentIndex1 + ' was clicked ' + images[currentIndex1].clicks + ' times');
+  localStorage.images = JSON.stringify(images);
+
   totClicks++;
+  console.log('totalClicks = ' + totalClicks);
+
   click16(totClicks);
-  showImage1(getRand());
+
+  var ri = getRand();
+  showImage1(ri);
+  localStorage.currentIndex1 = ri;
 }
 
 //Display new image, increment that it was shown
@@ -120,6 +140,7 @@ function showImage1(index){
   //Increment shown property
   images[index].incrementShown();
   console.log(index + ' was shown ' + images[index].shown + ' times');
+  localStorage.images = JSON.stringify(images);
 }
 
 //Listen for click event, increment when clicked
@@ -142,6 +163,7 @@ function showImage2(index){
   name2.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
+  localStorage.images = JSON.stringify(images);
   console.log(index + ' was shown ' + images[index].shown + ' times');
 }
 
@@ -155,6 +177,7 @@ function changeImage3(){
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
   //Save to local storage
   totClicks++;
+  localStorage.totClicks = JSON.stringify(totClicks);
   click16(totClicks);
   showImage3(getRand());
 }
