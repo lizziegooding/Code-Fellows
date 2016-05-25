@@ -158,23 +158,24 @@ function changeImage1(){
   //Increment shown property
   images[currentIndex1].incrementClicks();
   console.log(currentIndex1 + ' was clicked ' + images[currentIndex1].clicks + ' times');
-  localStorage.images = JSON.stringify(images);
-
-  totClicks++;
-  console.log('totClicks = ' + totClicks);
-  localStorage.totClicks = totClicks;
-
-  click16(totClicks);
-
-  var ri1 = getRand();
-  var ri2 = getRand();
-  var ri3 = getRand();
-  showImage1(ri1);
-  showImage2(ri2);
-  showImage3(ri3);
-  localStorage.currentIndex1 = ri1;
-  localStorage.currentIndex2 = ri2;
-  localStorage.currentIndex3 = ri3;
+  logClick();
+  // localStorage.images = JSON.stringify(images);
+  //
+  // totClicks++;
+  // console.log('totClicks = ' + totClicks);
+  // localStorage.totClicks = totClicks;
+  //
+  // click16(totClicks);
+  //
+  // var ri1 = getRand();
+  // var ri2 = getRand();
+  // var ri3 = getRand();
+  // showImage1(ri1);
+  // showImage2(ri2);
+  // showImage3(ri3);
+  // localStorage.currentIndex1 = ri1;
+  // localStorage.currentIndex2 = ri2;
+  // localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -182,7 +183,7 @@ function showImage1(index){
   //Store index of current image
   currentIndex1 = index;
   //Display current image
-  img1.setAttribute('src', images[index].src);
+  img1.style['background-image'] = 'url("' + images[index].src + '")';
   name1.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
@@ -196,23 +197,24 @@ function changeImage2(){
   //Increment shown property
   images[currentIndex2].incrementClicks();
   console.log(currentIndex2 + ' was clicked ' + images[currentIndex2].clicks + ' times');
-  localStorage.images = JSON.stringify(images);
-
-  totClicks++;
-  console.log('totClicks = ' + totClicks);
-  localStorage.totClicks = totClicks;
-
-  click16(totClicks);
-
-  var ri1 = getRand();
-  var ri2 = getRand();
-  var ri3 = getRand();
-  showImage1(ri1);
-  showImage2(ri2);
-  showImage3(ri3);
-  localStorage.currentIndex1 = ri1;
-  localStorage.currentIndex2 = ri2;
-  localStorage.currentIndex3 = ri3;
+  logClick();
+  // localStorage.images = JSON.stringify(images);
+  //
+  // totClicks++;
+  // console.log('totClicks = ' + totClicks);
+  // localStorage.totClicks = totClicks;
+  //
+  // click16(totClicks);
+  //
+  // var ri1 = getRand();
+  // var ri2 = getRand();
+  // var ri3 = getRand();
+  // showImage1(ri1);
+  // showImage2(ri2);
+  // showImage3(ri3);
+  // localStorage.currentIndex1 = ri1;
+  // localStorage.currentIndex2 = ri2;
+  // localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -220,7 +222,7 @@ function showImage2(index){
   //Store index of current image
   currentIndex2 = index;
   //Display current image
-  img2.setAttribute('src', images[index].src);
+  img2.style['background-image'] = 'url("' + images[index].src + '")';
   name2.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
@@ -236,8 +238,42 @@ function changeImage3(){
   //Save to local storage
   localStorage.images = JSON.stringify(images);
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
-  localStorage.images = JSON.stringify(images);
+  logClick();
+  // localStorage.images = JSON.stringify(images);
+  //
+  // totClicks++;
+  // console.log('totClicks = ' + totClicks);
+  // localStorage.totClicks = totClicks;
+  //
+  // click16(totClicks);
+  //
+  // var ri1 = getRand();
+  // var ri2 = getRand();
+  // var ri3 = getRand();
+  // showImage1(ri1);
+  // showImage2(ri2);
+  // showImage3(ri3);
+  // localStorage.currentIndex1 = ri1;
+  // localStorage.currentIndex2 = ri2;
+  // localStorage.currentIndex3 = ri3;
+}
 
+//Display new image, increment that it was shown
+function showImage3(index){
+  //Store index of current image
+  currentIndex3 = index;
+  //Display current image
+  img3.style['background-image'] = 'url("' + images[index].src + '")';
+  name3.textContent = images[index].iName;
+  //Increment shown property
+  images[index].incrementShown();
+  //Save to local storage
+  console.log(index + ' was shown ' + images[index].shown + ' times');
+  localStorage.images = JSON.stringify(images);
+}
+
+function logClick(){
+  localStorage.images = JSON.stringify(images);
   totClicks++;
   console.log('totClicks = ' + totClicks);
   localStorage.totClicks = totClicks;
@@ -253,20 +289,6 @@ function changeImage3(){
   localStorage.currentIndex1 = ri1;
   localStorage.currentIndex2 = ri2;
   localStorage.currentIndex3 = ri3;
-}
-
-//Display new image, increment that it was shown
-function showImage3(index){
-  //Store index of current image
-  currentIndex3 = index;
-  //Display current image
-  img3.setAttribute('src', images[index].src);
-  name3.textContent = images[index].iName;
-  //Increment shown property
-  images[index].incrementShown();
-  //Save to local storage
-  console.log(index + ' was shown ' + images[index].shown + ' times');
-  localStorage.images = JSON.stringify(images);
 }
 
 function click16(clicks){

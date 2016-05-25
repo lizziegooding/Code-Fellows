@@ -1,16 +1,16 @@
-img {
-  width: 300px;
-}
-
-span {
-  display: inline;
+#img1, #img2, #img3 {
+  width:  300px;
+  height: 300px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  max-height: 350px;
+  /*align-items: center;*/
+  /*max-height: 350px;*/
   margin: 50px;
 }
 
@@ -22,11 +22,11 @@ button {
   visibility: hidden;
 }
 
-.bar {
+/*.bar {
   height: 20px;
   /*background-color: rgb(187,70,38);
   border: 1px solid white;
-  text-align: right;*/
+  text-align: right;
   font: 10px sans-serif;
   background-color: steelblue;
   text-align: right;
@@ -35,4 +35,4 @@ button {
   color: black;
   white-space: nowrap;
   padding-top: 10px;
-}
+}*/
