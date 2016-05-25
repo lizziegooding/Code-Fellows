@@ -68,11 +68,13 @@ img3.addEventListener('click',changeImage3);
 
 var results = document.getElementById('results');
 results.addEventListener('click',showResults);
-var tryAgain = document.getElementById('tryAgain');
-var chart = document.getElementById('chart');
+var canvas = document.getElementById('canvas');
+
+var moreGuesses = document.getElementById('moreGuesses');
+moreGuesses.addEventListener('click',guessAgain);
+
 var refresh = document.getElementById('refresh');
 refresh.addEventListener('click',function (){ window.location.reload(false);});
-// tryAgain.addEventListener('click',guessAgain);
 
 //Call show image the first time (without event) to populate website with random image
 showImage1(getRand());
@@ -151,27 +153,78 @@ function showImage3(index){
 function click16(clicks){
   if (clicks === 16){
     results.style.visibility = 'visible';
-    tryAgain.style.visibility = 'visible';
+    moreGuesses.style.visibility = 'visible';
+    img1.removeEventListener('click',changeImage1);
+    img2.removeEventListener('click',changeImage2);
+    img3.removeEventListener('click',changeImage3);
+  }
+  else if (clicks === 24){
+    showResults();
+    img1.removeEventListener('click',changeImage1);
+    img2.removeEventListener('click',changeImage2);
+    img3.removeEventListener('click',changeImage3);
   }
 }
 
-function showResults(){
+function draw(numArray, labelArray1, labelArray2) {
+  // **Shamelessly** copied from mob coding, from Chart.js documentation
+  var myChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: labelArray1,
+      datasets: [{
+        label: '# of Votes',
+        data: numArray,
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)'
+      },
+        {
+          type: 'line',
+          label: 'votes/shown %',
+          data: labelArray2
+        }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: { beginAtZero: true }
+        }]
+      }
+    }
+  });
+}
+
+function showResults() {
+  console.log('show results running!');
+  //Hide results and try again buttons
   results.style.visibility = 'hidden';
-  tryAgain.style.visibility = 'hidden';
-  chart.textContent = 'Number of clicks';
-  for (var yy = 0; yy < images.length; yy++){
-    var div = document.createElement('div');
-    var percent = Math.round((images[yy].clicks / images[yy].shown) * 100);
+  moreGuesses.style.visibility = 'hidden';
+  var dataClicks = [];
+  var chartLabels = [];
+  var percLabels = [];
+  for (var ii = 0; ii < images.length; ii++) {
+    dataClicks.push(images[ii].clicks);
+    chartLabels.push(images[ii].iName);
+    var percent = Math.round((images[ii].clicks / images[ii].shown));
     if (isNaN(percent)){
       percent = 0;
     }
-    var label = document.createTextNode(images[yy].iName + ' (' + percent + '%)');
-    // div.setAttribute('id', images[yy].iName);
-    div.setAttribute('class', 'bar');
-    div.style.width = (images[yy].clicks * 60) + 'px';
-    // div.style['padding-left'] = images[yy].iName.length + 'px';
-    div.appendChild(label);
-    chart.appendChild(div);
+    percLabels.push(percent);
   }
+  console.log('Data, clicks: ' + dataClicks);
+  console.log('Labels: ' + chartLabels);
+  draw(dataClicks, chartLabels, percLabels);
   refresh.style.visibility = 'visible';
+}
+
+// Implement a callback for the "8 More Votes" button; the callback should hide all buttons, then allow 8 more votes. After the 8th extra vote, hide buttons, plot the vote histogram and show the "New Round" button.
+function guessAgain(){
+  results.style.visibility = 'hidden';
+  moreGuesses.style.visibility = 'hidden';
+  img1.addEventListener('click',changeImage1);
+  img2.addEventListener('click',changeImage2);
+  img3.addEventListener('click',changeImage3);
 }
