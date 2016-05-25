@@ -18,10 +18,6 @@ var imageNames = ['chocolates.jpg',
 //Create empty array to hold image objects
 var images = [];
 //Initialize variables to hold index of what's being shown
-var currentIndex1 = 0;
-var currentIndex2 = 0;
-var currentIndex3 = 0;
-var totClicks = 0;
 
 //Construct objects using images array, push to new object array
 function ImgObj(src) {
@@ -71,46 +67,88 @@ moreGuesses.addEventListener('click',guessAgain);
 var refresh = document.getElementById('refresh');
 refresh.addEventListener('click',function (){ window.location.reload(false);});
 
-//Call show image the first time (without event) to populate website with random image. Store that index in local storage
+//***IMAGE 1***Call show image the first time (without event) to populate website with random image. Store that index in local storage
 var ri1 = localStorage.currentIndex1;
 if (!ri1) { //if app hasn't run yet...
-  console.log('first time constructing images array');
+  console.log('first time generating image 1, first time constructing images array');
   ri1 = getRand();
   //Loop through all file names, construct image object, push to images array
   for (var xx = 0; xx < imageNames.length; xx++){
     var img = new ImgObj(imageNames[xx]);
     images.push(img);
   }
+  var currentIndex1 = 0;
+  var currentIndex2 = 0;
+  var currentIndex3 = 0;
+  var totClicks = 0;
 }
 else {
-  console.log('getting values from localStorage');
+  console.log('getting values from localStorage img 1');
   var imagesBack = JSON.parse(localStorage.images);
   //Loop through all file names, construct image object, push to images array
   for (var ii = 0; ii < imageNames.length; ii++){
     var img = new ImgObj(imageNames[ii]);
     img.clicks = imagesBack[ii].clicks;
     img.shown = imagesBack[ii].shown;
-    console.log(img);
+    // console.log(img);
     images.push(img);
   }
+  totClicks = localStorage.totClicks;
 }
-console.log('current state: ' + images);
 showImage1(ri1);
 
-// var ri2 = localStorage.currentIndex2;
-// if (ri2 = false) {
-//   ri2 = getRand();
+//***IMAGE 2***Call show image the first time (without event) to populate website with random image. Store that index in local storage
+var ri2 = localStorage.currentIndex2;
+if (!ri2) { //if app hasn't run yet...
+  console.log('first time generating image 2');
+  ri2 = getRand();
+  //Loop through all file names, construct image object, push to images array
+  // for (var xx = 0; xx < imageNames.length; xx++){
+  //   var img = new ImgObj(imageNames[xx]);
+  //   images.push(img);
+  // }
+}
+// else {
+//   console.log('getting values from localStorage img 2');
+//   var imagesBack = JSON.parse(localStorage.images);
+//   //Loop through all file names, construct image object, push to images array
+//   for (var ii = 0; ii < imageNames.length; ii++){
+//     var img = new ImgObj(imageNames[ii]);
+//     img.clicks = imagesBack[ii].clicks;
+//     img.shown = imagesBack[ii].shown;
+//     // console.log(img);
+//     images.push(img);
+//   }
 // }
-// showImage2(ri2);
-//
-// var ri3 = localStorage.currentIndex3;
-// if (ri3 = false) {
-//   ri3 = getRand();
-// }
-// showImage3(ri3);
+showImage2(ri2);
 
-      // showImage2(getRand());
-      // showImage3(getRand());
+//*** IMAGE 3 *** Call show image the first time (without event) to populate website with random image. Store that index in local storage
+var ri3 = localStorage.currentIndex3;
+if (!ri3) { //if app hasn't run yet...
+  console.log('first time generating image 3');
+  ri3 = getRand();
+  //Loop through all file names, construct image object, push to images array
+  // for (var xx = 0; xx < imageNames.length; xx++){
+  //   var img = new ImgObj(imageNames[xx]);
+  //   images.push(img);
+  // }
+}
+// else {
+//   console.log('getting values from localStorage img 3');
+//   var imagesBack = JSON.parse(localStorage.images);
+//   //Loop through all file names, construct image object, push to images array
+//   for (var ii = 0; ii < imageNames.length; ii++){
+//     var img = new ImgObj(imageNames[ii]);
+//     img.clicks = imagesBack[ii].clicks;
+//     img.shown = imagesBack[ii].shown;
+//     // console.log(img);
+//     images.push(img);
+//   }
+// }
+showImage3(ri3);
+
+console.log('images is currently ' + images.length + ' elements long');
+console.log('clicks so far: ' + totClicks);
 
 //Listen for click event, increment when clicked
 function changeImage1(){
@@ -121,13 +159,14 @@ function changeImage1(){
   localStorage.images = JSON.stringify(images);
 
   totClicks++;
-  console.log('totalClicks = ' + totalClicks);
+  console.log('totClicks = ' + totClicks);
+  localStorage.totClicks = totClicks;
 
   click16(totClicks);
 
-  var ri = getRand();
-  showImage1(ri);
-  localStorage.currentIndex1 = ri;
+  var ri1 = getRand();
+  showImage1(ri1);
+  localStorage.currentIndex1 = ri1;
 }
 
 //Display new image, increment that it was shown
@@ -149,9 +188,17 @@ function changeImage2(){
   //Increment shown property
   images[currentIndex2].incrementClicks();
   console.log(currentIndex2 + ' was clicked ' + images[currentIndex2].clicks + ' times');
+  localStorage.images = JSON.stringify(images);
+
   totClicks++;
+  console.log('totClicks = ' + totClicks);
+  localStorage.totClicks = totClicks;
+
   click16(totClicks);
-  showImage2(getRand());
+
+  var ri2 = getRand();
+  showImage2(ri2);
+  localStorage.currentIndex2 = ri2;
 }
 
 //Display new image, increment that it was shown
@@ -163,8 +210,8 @@ function showImage2(index){
   name2.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
-  localStorage.images = JSON.stringify(images);
   console.log(index + ' was shown ' + images[index].shown + ' times');
+  localStorage.images = JSON.stringify(images);
 }
 
 //Listen for click event, increment when clicked
@@ -175,11 +222,17 @@ function changeImage3(){
   //Save to local storage
   localStorage.images = JSON.stringify(images);
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
-  //Save to local storage
+  localStorage.images = JSON.stringify(images);
+
   totClicks++;
-  localStorage.totClicks = JSON.stringify(totClicks);
+  console.log('totClicks = ' + totClicks);
+  localStorage.totClicks = totClicks;
+
   click16(totClicks);
-  showImage3(getRand());
+
+  var ri3 = getRand();
+  showImage3(ri3);
+  localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -192,8 +245,8 @@ function showImage3(index){
   //Increment shown property
   images[index].incrementShown();
   //Save to local storage
-  localStorage.images = JSON.stringify(images);
   console.log(index + ' was shown ' + images[index].shown + ' times');
+  localStorage.images = JSON.stringify(images);
 }
 
 function click16(clicks){
