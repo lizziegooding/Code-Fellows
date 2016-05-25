@@ -166,26 +166,31 @@ function click16(clicks){
   }
 }
 
-function draw(numArray, labelArray) {
+function draw(numArray, labelArray1, labelArray2) {
   // **Shamelessly** copied from mob coding, from Chart.js documentation
   var myChart = new Chart(canvas, {
     type: 'bar',
     data: {
-      labels: labelArray,
+      labels: labelArray1,
       datasets: [{
         label: '# of Votes',
         data: numArray,
-      }]
-        // {
-        //   type: 'line',
-        //   label: 'votes/shown %',
-        //   data: pcntArray
-        // }]
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)'
+      },
+        {
+          type: 'line',
+          label: 'votes/shown %',
+          data: labelArray2
+        }]
     },
     options: {
       scales: {
         yAxes: [{
-          ticks: { beginAtZero:true }
+          ticks: { beginAtZero: true }
         }]
       }
     }
@@ -199,15 +204,19 @@ function showResults() {
   moreGuesses.style.visibility = 'hidden';
   var dataClicks = [];
   var chartLabels = [];
-  // var percents = [];
+  var percLabels = [];
   for (var ii = 0; ii < images.length; ii++) {
     dataClicks.push(images[ii].clicks);
     chartLabels.push(images[ii].iName);
-    // percents.push(Math.ceil(Math.random() * 100));
+    var percent = Math.round((images[ii].clicks / images[ii].shown));
+    if (isNaN(percent)){
+      percent = 0;
+    }
+    percLabels.push(percent);
   }
   console.log('Data, clicks: ' + dataClicks);
   console.log('Labels: ' + chartLabels);
-  draw(dataClicks, chartLabels);
+  draw(dataClicks, chartLabels, percLabels);
   refresh.style.visibility = 'visible';
 }
 
