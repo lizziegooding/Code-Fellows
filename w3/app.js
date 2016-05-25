@@ -65,7 +65,9 @@ moreGuesses.addEventListener('click',guessAgain);
 
 //Start proccess again
 var refresh = document.getElementById('refresh');
-refresh.addEventListener('click',function (){ window.location.reload(false);});
+refresh.addEventListener('click',function (){ window.location.reload(false);
+  localStorage.totClicks = 0;
+});
 
 //***IMAGE 1***Call show image the first time (without event) to populate website with random image. Store that index in local storage
 var ri1 = localStorage.currentIndex1;
@@ -165,8 +167,14 @@ function changeImage1(){
   click16(totClicks);
 
   var ri1 = getRand();
+  var ri2 = getRand();
+  var ri3 = getRand();
   showImage1(ri1);
+  showImage2(ri2);
+  showImage3(ri3);
   localStorage.currentIndex1 = ri1;
+  localStorage.currentIndex2 = ri2;
+  localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -196,9 +204,15 @@ function changeImage2(){
 
   click16(totClicks);
 
+  var ri1 = getRand();
   var ri2 = getRand();
+  var ri3 = getRand();
+  showImage1(ri1);
   showImage2(ri2);
+  showImage3(ri3);
+  localStorage.currentIndex1 = ri1;
   localStorage.currentIndex2 = ri2;
+  localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -230,8 +244,14 @@ function changeImage3(){
 
   click16(totClicks);
 
+  var ri1 = getRand();
+  var ri2 = getRand();
   var ri3 = getRand();
+  showImage1(ri1);
+  showImage2(ri2);
   showImage3(ri3);
+  localStorage.currentIndex1 = ri1;
+  localStorage.currentIndex2 = ri2;
   localStorage.currentIndex3 = ri3;
 }
 
@@ -251,7 +271,7 @@ function showImage3(index){
 
 function click16(clicks){
   console.log('check number clicks');
-  if (((clicks / 8) + 1) % 3 === 0 && clicks > 0){
+  if (clicks % 16 === 0 && clicks > 0){
     console.log('There have been 16 clicks');
     results.style.visibility = 'visible';
     moreGuesses.style.visibility = 'visible';
@@ -259,9 +279,10 @@ function click16(clicks){
     img2.removeEventListener('click',changeImage2);
     img3.removeEventListener('click',changeImage3);
   }
-  else if ((clicks / 8) % 3 === 0 && clicks > 0){
+  else if (clicks % 24 === 0 && clicks > 0){
     console.log('There have been 24 clicks');
     showResults();
+    localStorage.totClicks = 0;
     img1.removeEventListener('click',changeImage1);
     img2.removeEventListener('click',changeImage2);
     img3.removeEventListener('click',changeImage3);
