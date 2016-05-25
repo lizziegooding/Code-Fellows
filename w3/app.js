@@ -68,7 +68,8 @@ img3.addEventListener('click',changeImage3);
 
 var results = document.getElementById('results');
 results.addEventListener('click',showResults);
-var canvas = document.getElementById('canvas');
+var canvas1 = document.getElementById('canvas1');
+var canvas2 = document.getElementById('canvas2');
 
 var moreGuesses = document.getElementById('moreGuesses');
 moreGuesses.addEventListener('click',guessAgain);
@@ -168,7 +169,7 @@ function click16(clicks){
 
 function draw(numArray, labelArray1, labelArray2) {
   // **Shamelessly** copied from mob coding, from Chart.js documentation
-  var myChart = new Chart(canvas, {
+  var absoluteChart = new Chart(canvas1, {
     type: 'bar',
     data: {
       labels: labelArray1,
@@ -180,13 +181,39 @@ function draw(numArray, labelArray1, labelArray2) {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)'
-      },
-        {
-          type: 'line',
-          label: 'votes/shown %',
-          data: labelArray2
+      }]},
+        // {
+        //   type: 'line',
+        //   label: 'votes/shown %',
+        //   data: labelArray2
+        // }]
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: { beginAtZero: true }
         }]
-    },
+      }
+    }
+  });
+  var percentChart = new Chart(canvas2, {
+    type: 'bar',
+    data: {
+      labels: labelArray1,
+      datasets: [{
+        label: '% of Votes given # of times Shown',
+        data: labelArray2,
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)'
+      }]},
+    //     {
+    //       type: 'line',
+    //       label: 'votes/shown %',
+    //       data:
+    //     }]
+    // },
     options: {
       scales: {
         yAxes: [{
@@ -208,7 +235,7 @@ function showResults() {
   for (var ii = 0; ii < images.length; ii++) {
     dataClicks.push(images[ii].clicks);
     chartLabels.push(images[ii].iName);
-    var percent = Math.round((images[ii].clicks / images[ii].shown));
+    var percent = Math.round((images[ii].clicks / images[ii].shown) * 100);
     if (isNaN(percent)){
       percent = 0;
     }
@@ -216,6 +243,7 @@ function showResults() {
   }
   console.log('Data, clicks: ' + dataClicks);
   console.log('Labels: ' + chartLabels);
+  console.log('Percent of times shown: ' + percLabels);
   draw(dataClicks, chartLabels, percLabels);
   refresh.style.visibility = 'visible';
 }
