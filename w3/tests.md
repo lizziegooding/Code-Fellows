@@ -19,3 +19,11 @@ After the 16th vote, the two buttons become visible.
 - Console.log the image array once the user has voted 8 times to verify that the 8 additional votes were added to initial 16 votes.
 - Verify that after the user has voted the additional 8 times, the chart is immediately shown.
 - Verify that the 'New Round' button resets the image array
+
+### Day 3
+
+- Verify that the object properties tracking # of times an image has been clicked and shown persists after refreshing the page.
+- Verify that the random images themselves persist after the page has been refreshed and/or the browser closed
+- Verify that the total number of clicks will refresh after results have been shown but not if the page is refreshed
+- Console log the length of the images array to be sure the object constructor is called only once and doesn't continue to push in objects
+- Verify that random images will be generated for each image container every time an image is clicked
