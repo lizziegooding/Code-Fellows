@@ -77,10 +77,27 @@ moreGuesses.addEventListener('click',guessAgain);
 var refresh = document.getElementById('refresh');
 refresh.addEventListener('click',function (){ window.location.reload(false);});
 
-//Call show image the first time (without event) to populate website with random image
-showImage1(getRand());
-showImage2(getRand());
-showImage3(getRand());
+//Call show image the first time (without event) to populate website with random image. Sore that index in local storage
+var ri1 = localStorage.currentIndex1;
+if (ri1 = false) {
+  ri1 = getRand();
+}
+showImage1(ri1);
+
+var ri2 = localStorage.currentIndex2;
+if (ri2 = false) {
+  ri2 = getRand();
+}
+showImage2(ri2);
+
+var ri3 = localStorage.currentIndex3;
+if (ri3 = false) {
+  ri3 = getRand();
+}
+showImage3(ri3);
+
+// showImage2(getRand());
+// showImage3(getRand());
 
 //Listen for click event, increment when clicked
 function changeImage1(){
@@ -133,7 +150,10 @@ function changeImage3(){
   console.log('CLICK');
   //Increment shown property
   images[currentIndex3].incrementClicks();
+  //Save to local storage
+  localStorage.images = JSON.stringify(images);
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
+  //Save to local storage
   totClicks++;
   click16(totClicks);
   showImage3(getRand());
@@ -148,6 +168,8 @@ function showImage3(index){
   name3.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
+  //Save to local storage
+  localStorage.images = JSON.stringify(images);
   console.log(index + ' was shown ' + images[index].shown + ' times');
 }
 
