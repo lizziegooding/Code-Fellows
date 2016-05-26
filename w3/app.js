@@ -17,7 +17,6 @@ var imageNames = ['chocolates.jpg',
 
 //Create empty array to hold image objects
 var images = [];
-//Initialize variables to hold index of what's being shown
 
 //Construct objects using images array, push to new object array
 function ImgObj(src) {
@@ -60,8 +59,8 @@ var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
 
 //Give user 8 more votes
-var moreGuesses = document.getElementById('moreGuesses');
-moreGuesses.addEventListener('click',guessAgain);
+var moreVotes = document.getElementById('moreVotes');
+moreVotes.addEventListener('click',guessAgain);
 
 //Start proccess again
 var refresh = document.getElementById('refresh');
@@ -79,6 +78,7 @@ if (!ri1) { //if app hasn't run yet...
     var img = new ImgObj(imageNames[xx]);
     images.push(img);
   }
+  //Initialize variables to hold index of what's being shown
   var currentIndex1 = 0;
   var currentIndex2 = 0;
   var currentIndex3 = 0;
@@ -104,24 +104,7 @@ var ri2 = localStorage.currentIndex2;
 if (!ri2) { //if app hasn't run yet...
   console.log('first time generating image 2');
   ri2 = getRand();
-  //Loop through all file names, construct image object, push to images array
-  // for (var xx = 0; xx < imageNames.length; xx++){
-  //   var img = new ImgObj(imageNames[xx]);
-  //   images.push(img);
-  // }
 }
-// else {
-//   console.log('getting values from localStorage img 2');
-//   var imagesBack = JSON.parse(localStorage.images);
-//   //Loop through all file names, construct image object, push to images array
-//   for (var ii = 0; ii < imageNames.length; ii++){
-//     var img = new ImgObj(imageNames[ii]);
-//     img.clicks = imagesBack[ii].clicks;
-//     img.shown = imagesBack[ii].shown;
-//     // console.log(img);
-//     images.push(img);
-//   }
-// }
 showImage2(ri2);
 
 //*** IMAGE 3 *** Call show image the first time (without event) to populate website with random image. Store that index in local storage
@@ -129,28 +112,8 @@ var ri3 = localStorage.currentIndex3;
 if (!ri3) { //if app hasn't run yet...
   console.log('first time generating image 3');
   ri3 = getRand();
-  //Loop through all file names, construct image object, push to images array
-  // for (var xx = 0; xx < imageNames.length; xx++){
-  //   var img = new ImgObj(imageNames[xx]);
-  //   images.push(img);
-  // }
 }
-// else {
-//   console.log('getting values from localStorage img 3');
-//   var imagesBack = JSON.parse(localStorage.images);
-//   //Loop through all file names, construct image object, push to images array
-//   for (var ii = 0; ii < imageNames.length; ii++){
-//     var img = new ImgObj(imageNames[ii]);
-//     img.clicks = imagesBack[ii].clicks;
-//     img.shown = imagesBack[ii].shown;
-//     // console.log(img);
-//     images.push(img);
-//   }
-// }
 showImage3(ri3);
-
-// console.log('images is currently ' + images.length + ' elements long');
-// console.log('clicks so far: ' + totClicks);
 
 //Listen for click event, increment when clicked
 function changeImage1(){
@@ -159,35 +122,19 @@ function changeImage1(){
   images[currentIndex1].incrementClicks();
   console.log(currentIndex1 + ' was clicked ' + images[currentIndex1].clicks + ' times');
   logClick();
-  // localStorage.images = JSON.stringify(images);
-  //
-  // totClicks++;
-  // console.log('totClicks = ' + totClicks);
-  // localStorage.totClicks = totClicks;
-  //
-  // click16(totClicks);
-  //
-  // var ri1 = getRand();
-  // var ri2 = getRand();
-  // var ri3 = getRand();
-  // showImage1(ri1);
-  // showImage2(ri2);
-  // showImage3(ri3);
-  // localStorage.currentIndex1 = ri1;
-  // localStorage.currentIndex2 = ri2;
-  // localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
 function showImage1(index){
   //Store index of current image
   currentIndex1 = index;
-  //Display current image
+  //Display current image and name
   img1.style['background-image'] = 'url("' + images[index].src + '")';
   name1.textContent = images[index].iName;
   //Increment shown property
   images[index].incrementShown();
   console.log(index + ' was shown ' + images[index].shown + ' times');
+  //Pass local storage images array
   localStorage.images = JSON.stringify(images);
 }
 
@@ -198,23 +145,6 @@ function changeImage2(){
   images[currentIndex2].incrementClicks();
   console.log(currentIndex2 + ' was clicked ' + images[currentIndex2].clicks + ' times');
   logClick();
-  // localStorage.images = JSON.stringify(images);
-  //
-  // totClicks++;
-  // console.log('totClicks = ' + totClicks);
-  // localStorage.totClicks = totClicks;
-  //
-  // click16(totClicks);
-  //
-  // var ri1 = getRand();
-  // var ri2 = getRand();
-  // var ri3 = getRand();
-  // showImage1(ri1);
-  // showImage2(ri2);
-  // showImage3(ri3);
-  // localStorage.currentIndex1 = ri1;
-  // localStorage.currentIndex2 = ri2;
-  // localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -239,23 +169,6 @@ function changeImage3(){
   localStorage.images = JSON.stringify(images);
   console.log(currentIndex3 + ' was clicked ' + images[currentIndex3].clicks + ' times');
   logClick();
-  // localStorage.images = JSON.stringify(images);
-  //
-  // totClicks++;
-  // console.log('totClicks = ' + totClicks);
-  // localStorage.totClicks = totClicks;
-  //
-  // click16(totClicks);
-  //
-  // var ri1 = getRand();
-  // var ri2 = getRand();
-  // var ri3 = getRand();
-  // showImage1(ri1);
-  // showImage2(ri2);
-  // showImage3(ri3);
-  // localStorage.currentIndex1 = ri1;
-  // localStorage.currentIndex2 = ri2;
-  // localStorage.currentIndex3 = ri3;
 }
 
 //Display new image, increment that it was shown
@@ -296,7 +209,7 @@ function click16(clicks){
   if (clicks % 16 === 0 && clicks > 0){
     console.log('There have been 16 clicks');
     results.style.visibility = 'visible';
-    moreGuesses.style.visibility = 'visible';
+    moreVotes.style.visibility = 'visible';
     img1.removeEventListener('click',changeImage1);
     img2.removeEventListener('click',changeImage2);
     img3.removeEventListener('click',changeImage3);
@@ -326,11 +239,6 @@ function draw(numArray, labelArray1, labelArray2) {
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)'
       }]},
-        // {
-        //   type: 'line',
-        //   label: 'votes/shown %',
-        //   data: labelArray2
-        // }]
     options: {
       scales: {
         yAxes: [{
@@ -340,7 +248,7 @@ function draw(numArray, labelArray1, labelArray2) {
     }
   });
   var percentChart = new Chart(canvas2, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: labelArray1,
       datasets: [{
@@ -352,12 +260,6 @@ function draw(numArray, labelArray1, labelArray2) {
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)'
       }]},
-    //     {
-    //       type: 'line',
-    //       label: 'votes/shown %',
-    //       data:
-    //     }]
-    // },
     options: {
       scales: {
         yAxes: [{
@@ -372,7 +274,7 @@ function showResults() {
   console.log('show results running!');
   //Hide results and try again buttons
   results.style.visibility = 'hidden';
-  moreGuesses.style.visibility = 'hidden';
+  moreVotes.style.visibility = 'hidden';
   var dataClicks = [];
   var chartLabels = [];
   var percLabels = [];
@@ -395,7 +297,7 @@ function showResults() {
 // Implement a callback for the "8 More Votes" button; the callback should hide all buttons, then allow 8 more votes. After the 8th extra vote, hide buttons, plot the vote histogram and show the "New Round" button.
 function guessAgain(){
   results.style.visibility = 'hidden';
-  moreGuesses.style.visibility = 'hidden';
+  moreVotes.style.visibility = 'hidden';
   img1.addEventListener('click',changeImage1);
   img2.addEventListener('click',changeImage2);
   img3.addEventListener('click',changeImage3);
