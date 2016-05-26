@@ -206,7 +206,7 @@ function logClick(){
 
 function click16(clicks){
   console.log('check number clicks');
-  if (clicks % 16 === 0 && clicks > 0){
+  if (clicks === 16){
     console.log('There have been 16 clicks');
     results.style.visibility = 'visible';
     moreVotes.style.visibility = 'visible';
@@ -214,7 +214,7 @@ function click16(clicks){
     img2.removeEventListener('click',changeImage2);
     img3.removeEventListener('click',changeImage3);
   }
-  else if (clicks % 24 === 0 && clicks > 0){
+  else if (clicks === 24){
     console.log('There have been 24 clicks');
     showResults();
     localStorage.totClicks = 0;
