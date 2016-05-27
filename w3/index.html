@@ -5,9 +5,18 @@
 <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
 </head>
 <body>
+  <header id ="banner">
   <h1>BusMall</h1>
+  <div id='bus-left'>
+    <img src='images/bus_left.png'/>
+  </div>
+  <div id='bus-right'>
+    <img src='images/bus_right.png'/>
+  </div>
+</header>
+  <div id="parentContainer">
   <p>Click on your favorite image from our last BusMall instagram contest. You can vote 16 times.</p>
-  <div class = "container">
+  <article class = "container">
     <div>
       <div id="img1"></div>
       <p id="name1"></p>
@@ -20,12 +29,24 @@
       <div id="img3"></div>
       <p id="name3"></p>
     </div>
-</div>
-<button id="results">Show results</button>
-<button id="moreVotes">Vote 8 more times</button>
+</article>
+<div id='box1'></div>
+<!-- <div class='background'> -->
+<!-- </div> -->
+<article class = "buttons">
+  <button id="results">Show results</button>
+  <button id="moreVotes">Vote 8 more times</button>
+  <button id="refresh">New Round</button>
+</article>
 <canvas id="canvas1" width="100%" height="25%"></canvas>
 <canvas id="canvas2" width="100%" height="25%"></canvas>
-<button id="refresh">New Round</button>
+<!-- Courtesy of Ruth -->
+<video src="vid/busmall.mp4" type="video/mp4" preload="auto" poster="vid/poster.png" controls>
+  Your browser does not support the <code>video</code> element.
+</video>
+</div>
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/kuS1ITSzosg" frameborder="0" allowfullscreen></iframe> -->
 
 <script src="vendor/Chart.min.js"></script>
 <script src="app.js" type="text/javascript"></script>

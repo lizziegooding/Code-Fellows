@@ -1,5 +1,5 @@
 #img1, #img2, #img3 {
-  width:  300px;
+  width: 300px;
   height: 300px;
   background-size: contain;
   background-position: center;
@@ -9,18 +9,156 @@
 .container {
   display: flex;
   justify-content: space-around;
-  margin: 50px;
+  /*margin: auto;*/
 }
 
 p {
-  text-align: center;
+  margin: 30px;
+}
+
+#name1, #name2, #name3 {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+#box1 {
+  border-radius: 100px;
+  border-color: black;
+  border-width: 1px;
+  border-style: dashed;
+  width: 100px;
+  height: 100px;
+  animation: pulse 5s infinite;
+  /*animation-duration: 10s;
+  animation-name: pulse;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;*/
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(238,194,110,1);
+  }
+  /*50% {
+    background-color: #F04531;
+  }*/
+  100% {
+    background-color: rgba(187,70,38,1);
+  }
+}
+@keyframes slidein {
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
 }
 
 button {
   visibility: hidden;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 * {
   font-family: 'Avenir';
   text-align: center;
+}
+
+#parentContainer {
+  /*position: relative;*/
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  position:absolute;
+  top: 150px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow-y:scroll;
+}
+
+canvas {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  max-width: 600px;
+  margin: 0 auto;
+}
+h1 {
+  margin: auto;
+  font-size: 80px;
+  padding-top: 25px;
+  color: white;
+}
+
+#banner {
+  margin-top: -8px;
+  margin-left: -8px;
+  height: 150px;
+  background-color: rgba(194,116,83,1);
+  /*rgba(187,70,38,1);*/
+  border-radius: 5px;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+video {
+  width: 560px;
+  height: 315px;
+  margin-left: -150px;
+  margin-bottom: 50px;
+}
+
+@-webkit-keyframes mymove1 {
+    0%   {left: 20px;}
+    100%  {left: 270px;}
+}
+
+@-webkit-keyframes mymove2 {
+    0%   {right: 120px;}
+    100%  {right: 350px;}
+}
+
+#bus-right{
+    margin-top: -100px;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    -webkit-animation: mymove2 5s; /* Chrome, Safari, Opera */
+    animation: mymove 5s;
+    -webkit-animation: mymove2 5s; /* Chrome, Safari, Opera */
+    z-index: 10;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+#bus-left{
+    margin-top: -100px;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    -webkit-animation: mymove1 5s; /* Chrome, Safari, Opera */
+    animation: mymove 5s;
+    -webkit-animation: mymove1 5s; /* Chrome, Safari, Opera */
+    z-index: 10;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
 }
