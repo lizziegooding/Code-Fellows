@@ -27,3 +27,16 @@ After the 16th vote, the two buttons become visible.
 - Verify that the total number of clicks will refresh after results have been shown but not if the page is refreshed
 - Console log the length of the images array to be sure the object constructor is called only once and doesn't continue to push in objects
 - Verify that random images will be generated for each image container every time an image is clicked
+
+### Day 4
+
+- Verify that the styling implemented in CSS renders on the page correctly. Look specifically for:
+  - Font, font size, and font color
+  - Div dimensions, background color, and border-style
+  - Margins and padding for all elements
+  - Nav bar positioning
+  - Image dimensions and proportions
+- Verify that the animation implemented in CSS renders on the page correctly. Look specifically for:
+  - element movement to desired positions
+  - animation timing and interaction
+  - animation appearance changes (colors, borders)
