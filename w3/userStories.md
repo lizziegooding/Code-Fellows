@@ -17,3 +17,9 @@ In addition to the requirements from yesterday's user stories:
 In addition to the requirements from yesterday's user stories:
 - As a data analyst, I want to be able to track how users vote during multiple rounds in order to increase my sample size.
 - As a customer support person, I want my customers to be able to return to a quiz, refresh their browser, or access their quiz from another browser without losing results.
+
+### Day 4
+
+In addition to the requirements from yesterday's user stories:
+- As a user, I want to visit a visually appealing site that presents information in a way that's easy to understand.
+- As a developer, I want to create CSS animations to interest the user and keep them interested in staying on my site.
